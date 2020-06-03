@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/help_menu"
+        android:icon="@drawable/ic_help_outline_black_48dp"
+        android:title="help"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/settings_menu"
+        android:icon="@drawable/ic_settings_black_48dp"
+        android:title="settings"
+        app:showAsAction="always"/>
+</menu>
