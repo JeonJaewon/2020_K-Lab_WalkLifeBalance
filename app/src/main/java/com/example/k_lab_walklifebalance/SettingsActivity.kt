@@ -1,30 +1,26 @@
 package com.example.k_lab_walklifebalance
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_help.*
+import kotlinx.android.synthetic.main.activity_settings.*
 
-class MainActivity : BaseActivity(){
+class SettingsActivity : BaseActivity() {
     lateinit var  bottomNav : BottomNavigationView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_settings)
 
-        var toolbar = main_toolbar as Toolbar
+        var toolbar = settings_toolbar as Toolbar
         toolbar.title = ""
         setSupportActionBar(toolbar)
 
-        bottomNav = main_bottom_nav as BottomNavigationView
+        bottomNav = settings_bottom_nav as BottomNavigationView
         bottomNav.setOnNavigationItemSelectedListener {
             super.onNavigationItemSelected(it)
         }
-        bottomNav.selectedItemId = R.id.home_menu
-
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.fragment_container, HomeFragment()).commit()
-        supportFragmentManager.popBackStack()
+        // TODO(어떤 bootom nav 아이템이 선택되어 있게 할지)
     }
-
-
 }
