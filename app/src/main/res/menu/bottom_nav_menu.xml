@@ -2,14 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/statistics_menu"
-        android:icon="@mipmap/ic_launcher"
-        android:title="statistics"/>
+        android:icon="@drawable/statistics"/>
     <item
         android:id="@+id/home_menu"
-        android:icon="@mipmap/ic_launcher"
-        android:title="home"/>
+        android:icon="@drawable/home" />
     <item
         android:id="@+id/profile_menu"
-        android:icon="@mipmap/ic_launcher"
-        android:title="profile"/>
+        android:icon="@drawable/profile" />
 </menu>
