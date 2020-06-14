@@ -23,6 +23,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         //기본 프래그먼트인 보폭으로 초기화
         val trans = childFragmentManager.beginTransaction()
         trans.add(R.id.home_fragment_container, StrideFragment())

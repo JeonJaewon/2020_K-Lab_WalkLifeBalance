@@ -6,16 +6,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
+
     <TextView
         android:id="@+id/title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:text="보행 분석"
         android:textSize="24sp"
         android:textStyle="bold" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/title_text"
+        android:background="?android:attr/listDivider" />
 
     <RelativeLayout
         android:id="@+id/home_fragment_container"
@@ -23,6 +31,7 @@
         android:layout_above="@id/btn_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
     </RelativeLayout>
 
     <LinearLayout
@@ -71,4 +80,5 @@
             android:text="@string/stand"
             android:textSize="18sp" />
     </LinearLayout>
+
 </RelativeLayout>
