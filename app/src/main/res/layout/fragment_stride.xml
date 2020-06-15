@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/title_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="매우 균형"
@@ -43,16 +43,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="20dp"
-                    android:layout_below="@+id/textView3">
+                    android:layout_below="@+id/title_text">
 
                     <TextView
-                        android:id="@+id/textView6"
+                        android:id="@+id/left"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="1dp"
                         android:text="왼발 보폭"
                         android:textAlignment="center"
-                        app:layout_constraintEnd_toStartOf="@+id/textView7"
+                        app:layout_constraintEnd_toStartOf="@+id/right"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,7 +67,7 @@
                         android:textSize="24sp"
                         app:layout_constraintEnd_toStartOf="@+id/textView9"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                        app:layout_constraintTop_toBottomOf="@+id/left" />
 
                     <TextView
                         android:id="@+id/textView9"
@@ -80,22 +80,22 @@
                         android:textSize="24sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/textView8"
-                        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                        app:layout_constraintTop_toBottomOf="@+id/right" />
 
                     <TextView
-                        android:id="@+id/textView7"
+                        android:id="@+id/right"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="4dp"
                         android:text="오른발 보폭"
                         android:textAlignment="center"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/textView6"
+                        app:layout_constraintStart_toEndOf="@+id/left"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/description_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/const_layout"

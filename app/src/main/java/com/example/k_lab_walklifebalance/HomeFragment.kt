@@ -37,6 +37,7 @@ class HomeFragment : Fragment() {
             )
             trans.addToBackStack(null)
             trans.commit()
+            title_text.text = "보폭"
         }
         balance_btn.setOnClickListener {
             val trans = childFragmentManager.beginTransaction()
@@ -46,6 +47,7 @@ class HomeFragment : Fragment() {
             )
             trans.addToBackStack(null)
             trans.commit()
+            title_text.text = "균형"
         }
         angle_btn.setOnClickListener {
             val trans = childFragmentManager.beginTransaction()
@@ -55,6 +57,7 @@ class HomeFragment : Fragment() {
             )
             trans.addToBackStack(null)
             trans.commit()
+            title_text.text = "각도"
         }
         stand_btn.setOnClickListener {
             val trans = childFragmentManager.beginTransaction()
@@ -64,6 +67,7 @@ class HomeFragment : Fragment() {
             )
             trans.addToBackStack(null)
             trans.commit()
+            title_text.text = "지지"
         }
     }
 
