@@ -160,7 +160,7 @@ class StatisticsFragment : Fragment() {
                 setVisibleXRangeMaximum(5f)
                 setPinchZoom(false)
                 isDoubleTapToZoomEnabled = false
-                description.text = "월"
+                description.text = ""
                 setBackgroundColor(Color.WHITE)
                 description.textSize = 15f
                 setExtraOffsets(8f, 16f, 8f, 16f)

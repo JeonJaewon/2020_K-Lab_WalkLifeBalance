@@ -22,7 +22,7 @@ class MainActivity : BaseActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        initBluetooth()
+        //initBluetooth()
 
         var toolbar = main_toolbar as Toolbar
         toolbar.title = ""
@@ -95,24 +95,24 @@ class MainActivity : BaseActivity(){
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        bt.stopService()
-    }
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        bt.stopService()
+//    }
 
-    override fun onStart() {
-        super.onStart()
-        if (!bt.isBluetoothEnabled) { //
-            val intent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
-            startActivityForResult(intent, BluetoothState.REQUEST_ENABLE_BT)
-        } else {
-            if (!bt.isServiceAvailable) {
-                bt.setupService()
-                bt.startService(BluetoothState.DEVICE_OTHER) //DEVICE_ANDROID는 안드로이드 기기 끼리
-                setup()
-            }
-        }
-    }
+//    override fun onStart() {
+//        super.onStart()
+//        if (!bt.isBluetoothEnabled) { //
+//            val intent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+//            startActivityForResult(intent, BluetoothState.REQUEST_ENABLE_BT)
+//        } else {
+//            if (!bt.isServiceAvailable) {
+//                bt.setupService()
+//                bt.startService(BluetoothState.DEVICE_OTHER) //DEVICE_ANDROID는 안드로이드 기기 끼리
+//                setup()
+//            }
+//        }
+//    }
 
     fun setup() {
 //        val btnSend: Button = findViewById(R.id.btnSend) //데이터 전송
@@ -125,6 +125,7 @@ class MainActivity : BaseActivity(){
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == BluetoothState.REQUEST_CONNECT_DEVICE) {
             if (resultCode == Activity.RESULT_OK) bt.connect(data)
         } else if (requestCode == BluetoothState.REQUEST_ENABLE_BT) {
