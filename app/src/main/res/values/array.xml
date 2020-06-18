@@ -10,4 +10,9 @@
         <item>36pt</item>
         <item>40pt</item>
     </string-array>
+    <string-array name="statistics_data">
+        <item>월간 데이터</item>
+        <item>주간 데이터</item>
+        <item>일간 데이터</item>
+    </string-array>
 </resources>

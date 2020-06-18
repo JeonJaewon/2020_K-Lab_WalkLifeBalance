@@ -7,11 +7,38 @@
     tools:context=".StatisticsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:background="#2A3F50"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="statistics"
-        android:textSize="36sp" />
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/statistics_data"
+                android:layout_width="197dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="월간 운동량"
+                android:textColor="#FFFFFF"
+                android:textSize="36sp"
+                android:textStyle="bold" />
+            <Spinner
+                android:id="@+id/spinner_data"
+                android:layout_width="160dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:background="#FFFFFF" />
+        </LinearLayout>
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="376dp"/>
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
