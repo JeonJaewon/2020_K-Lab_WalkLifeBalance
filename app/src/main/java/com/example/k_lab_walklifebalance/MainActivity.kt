@@ -42,22 +42,24 @@ class MainActivity : BaseActivity(){
     private fun initBluetooth() {
         bt = BluetoothSPP(this) // 초기화
         if(!bt.isBluetoothEnabled){ // 블루투스 사용 불가능일시
-            Toast.makeText(getApplicationContext(),"Bluetooth is not available",Toast.LENGTH_SHORT).show();
+            Toast.makeText(applicationContext,"Bluetooth is not available",Toast.LENGTH_SHORT).show();
             finish();
         }
-        val tmp = mpuX
-        val tmp2 = mpuY
-        val tmp3 = mpuZ
-        val tmp4 = load_cell
+//        val tmp = mpuX
+//        val tmp2 = mpuY
+//        val tmp3 = mpuZ
+//        val tmp4 = load_cell
         bt.setOnDataReceivedListener { data, message ->
-            //데이터 수신
-//            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-            var array = message.split(",")
-            tmp.text = array[0].toString()
-            tmp2.text = array[1].toString()
-            tmp3.text = array[2].toString()
-            tmp4.text = array[3].toString()
-
+            var received_data = message.split(",")
+//            tmp.text = received_data[0]
+//            tmp2.text = received_data[1]
+//            tmp3.text = received_data[2]
+//            tmp4.text = received_data[3]
+            Toast.makeText(applicationContext,
+                "yaw: " + received_data[0] + ", " + "pitch: " + received_data[1] + ", " + "roll: " + received_data[2] + ", "
+                        + "sensor[0]: " + received_data[3] + ", " + "sensor[1]: " + received_data[4] + ", "
+                        + "sensor[2]: " + received_data[5] + ", " + "sensor[3]: " + received_data[6] + ", "
+                ,Toast.LENGTH_SHORT).show();
         }
         bt.setBluetoothConnectionListener(object : BluetoothConnectionListener {
             //연결됐을 때

@@ -20,64 +20,12 @@
         android:id="@+id/btnConnect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:background="@android:color/transparent"
         android:text="블루투스"
 
-        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintEnd_toEndOf="@+id/main_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/main_toolbar" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:text="x,y,z"
-        app:layout_constraintStart_toStartOf="@+id/main_toolbar"
-        app:layout_constraintTop_toTopOf="@+id/main_toolbar" />
-
-    <TextView
-        android:id="@+id/mpuX"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="tmp"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_container"
-        app:layout_constraintStart_toStartOf="@+id/main_toolbar" />
-
-    <TextView
-        android:id="@+id/mpuY"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="tmp"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_container"
-        app:layout_constraintStart_toEndOf="@+id/mpuX" />
-
-    <TextView
-        android:id="@+id/mpuZ"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:text="tmp"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_container"
-        app:layout_constraintStart_toEndOf="@+id/mpuY" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="21dp"
-        android:text="무게"
-        app:layout_constraintStart_toEndOf="@+id/mpuZ"
-        app:layout_constraintTop_toTopOf="@+id/main_toolbar" />
-
-    <TextView
-        android:id="@+id/load_cell"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="tmp"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_container"
-        app:layout_constraintEnd_toEndOf="@+id/textView11" />
 
     <LinearLayout
         android:id="@+id/fragment_container"
