@@ -86,15 +86,15 @@ class MainActivity : BaseActivity(){
             }
         })
 
-        val btBtn = btnConnect // 연결 시도
-        btBtn.setOnClickListener{
-            if (bt.serviceState == BluetoothState.STATE_CONNECTED) {
-                bt.disconnect()
-            } else {
-                val intent = Intent(applicationContext, DeviceList::class.java)
-                startActivityForResult(intent, BluetoothState.REQUEST_CONNECT_DEVICE)
-            }
-        }
+//        val btBtn = btnConnect // 연결 시도
+//        btBtn.setOnClickListener{
+//            if (bt.serviceState == BluetoothState.STATE_CONNECTED) {
+//                bt.disconnect()
+//            } else {
+//                val intent = Intent(applicationContext, DeviceList::class.java)
+//                startActivityForResult(intent, BluetoothState.REQUEST_CONNECT_DEVICE)
+//            }
+//        }
     }
 
     override fun onDestroy() {
@@ -145,7 +145,5 @@ class MainActivity : BaseActivity(){
             }
         }
     }
-
-
 }
 

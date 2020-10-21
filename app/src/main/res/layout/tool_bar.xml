@@ -4,6 +4,6 @@
     android:id="@+id/tool_bar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#6BD3C8"
+    android:background="@color/colorLightPink"
     app:menu="@menu/tool_bar_menu"
     app:title=""></androidx.appcompat.widget.Toolbar>

@@ -44,16 +44,16 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="23dp"
             android:layout_marginBottom="15dp"
-            android:background="#2A3F50"
+            android:background="#EBEBF3"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="196dp"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="글씨 크기"
-                android:textColor="#FFFFFF"
                 android:padding="10dp"
+                android:text="글씨 크기"
+                android:textColor="#000000"
                 android:textSize="20dp" />
 
             <Spinner
@@ -71,13 +71,14 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="15dp"
-            android:background="#2A3F50"
+            android:background="#EBEBF3"
             android:checked="true"
             android:padding="10dp"
             android:switchMinWidth="80sp"
             android:text="소리 켜기"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:textSize="20dp"
+            android:theme="@style/ToggleButton.CustomTheme"
             android:thumb="@drawable/switch_thumb"
             android:track="@drawable/switch_track_selector" />
 
@@ -89,12 +90,12 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="15dp"
-            android:background="#2A3F50"
+            android:background="#EBEBF3"
             android:checked="true"
             android:padding="10dp"
             android:switchMinWidth="80sp"
             android:text="진동 켜기"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:textSize="20dp"
             android:thumb="@drawable/switch_thumb"
             android:track="@drawable/switch_track_selector" />
@@ -107,23 +108,24 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="15dp"
-            android:background="#2A3F50"
+            android:background="#EBEBF3"
             android:checked="true"
             android:padding="10dp"
             android:switchMinWidth="80sp"
             android:text="푸시 알림 받기"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:textSize="20dp"
             android:thumb="@drawable/switch_thumb"
             android:track="@drawable/switch_track_selector" />
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="110dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_height="110dp"
-            android:orientation="vertical"
-            android:background="#2A3F50">
+            android:background="#EBEBF3"
+            android:orientation="vertical">
+
             <Switch
                 android:id="@+id/smsset"
                 android:layout_width="match_parent"
@@ -132,21 +134,29 @@
                 android:padding="10dp"
                 android:switchMinWidth="80sp"
                 android:text="낙상 시 문자 전송 기능"
-                android:textColor="#FFFFFF"
+                android:textColor="#000000"
                 android:textSize="20dp"
                 android:thumb="@drawable/switch_thumb"
                 android:track="@drawable/switch_track_selector" />
+
             <EditText
                 android:id="@+id/telephone"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="#FFFFFF"
-                android:padding="10dp"
-                android:layout_marginTop="5dp"
-                android:textSize="18dp"
                 android:layout_marginHorizontal="10dp"
-                android:text="전화번호를 입력해주세요." />
+                android:layout_marginTop="5dp"
+                android:background="#FFFFFF"
+                android:hint="전화번호를 입력하세요"
+                android:padding="10dp"
+                android:textSize="18dp" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/sendsmsbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="문자보내기" />
+
     </LinearLayout>
 
 

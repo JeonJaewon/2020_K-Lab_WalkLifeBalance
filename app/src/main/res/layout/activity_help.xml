@@ -11,6 +11,8 @@
         layout="@layout/tool_bar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="#D9409C"
+        android:backgroundTint="#D9409C"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
