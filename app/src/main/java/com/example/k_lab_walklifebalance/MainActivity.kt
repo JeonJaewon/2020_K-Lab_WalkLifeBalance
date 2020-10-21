@@ -2,9 +2,10 @@ package com.example.k_lab_walklifebalance
 
 import android.app.Activity
 import android.bluetooth.BluetoothAdapter
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import app.akexorcist.bluetotohspp.library.BluetoothSPP
@@ -13,17 +14,21 @@ import app.akexorcist.bluetotohspp.library.BluetoothState
 import app.akexorcist.bluetotohspp.library.DeviceList
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class MainActivity : BaseActivity(){
-
     private lateinit var bt: BluetoothSPP
-    lateinit var  bottomNav : BottomNavigationView
+    private lateinit var storageManager: StorageManager
+    lateinit var bottomNav : BottomNavigationView
+    private var receivedData = listOf<String>()
+    val todayDate = SimpleDateFormat("yyyy-MM-dd/", Locale.getDefault()).format(Date())
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initBluetooth()
-
+        initStorageManager()
         var toolbar = main_toolbar as Toolbar
         toolbar.title = ""
         setSupportActionBar(toolbar)
@@ -33,10 +38,14 @@ class MainActivity : BaseActivity(){
             super.onNavigationItemSelected(it)
         }
         bottomNav.selectedItemId = R.id.home_menu
-
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.fragment_container, HomeFragment()).commit()
         supportFragmentManager.popBackStack()
+    }
+
+    private fun initStorageManager() {
+        storageManager = StorageManager(this)
+        storageManager.initLocalStorage()
     }
 
     private fun initBluetooth() {
@@ -45,21 +54,9 @@ class MainActivity : BaseActivity(){
             Toast.makeText(applicationContext,"Bluetooth is not available",Toast.LENGTH_SHORT).show();
             finish();
         }
-//        val tmp = mpuX
-//        val tmp2 = mpuY
-//        val tmp3 = mpuZ
-//        val tmp4 = load_cell
+
         bt.setOnDataReceivedListener { data, message ->
-            var received_data = message.split(",")
-//            tmp.text = received_data[0]
-//            tmp2.text = received_data[1]
-//            tmp3.text = received_data[2]
-//            tmp4.text = received_data[3]
-            Toast.makeText(applicationContext,
-                "yaw: " + received_data[0] + ", " + "pitch: " + received_data[1] + ", " + "roll: " + received_data[2] + ", "
-                        + "sensor[0]: " + received_data[3] + ", " + "sensor[1]: " + received_data[4] + ", "
-                        + "sensor[2]: " + received_data[5] + ", " + "sensor[3]: " + received_data[6] + ", "
-                ,Toast.LENGTH_SHORT).show();
+            receivedData = message.split(",") // 여기서 배열에 저장
         }
         bt.setBluetoothConnectionListener(object : BluetoothConnectionListener {
             //연결됐을 때
@@ -69,6 +66,21 @@ class MainActivity : BaseActivity(){
                     , "Connected to $name\n$address"
                     , Toast.LENGTH_SHORT
                 ).show()
+                val handler = Handler()
+                handler.postDelayed(object : Runnable {
+                    override fun run() {
+                        if(receivedData.isNotEmpty()){
+                            storageManager.writeLocalStorage(receivedData)
+                            val s = storageManager.readLocalStorageForDay(todayDate)
+                            Toast.makeText(applicationContext,
+                                s[0].toString()+"/"+s[1].toString()+"/"+s[2].toString()+"/"
+                                        +s[3].toString()+"/"+s[4].toString()+"/"+s[5].toString()+"/"
+                                        +s[6].toString()+"/",
+                                Toast.LENGTH_SHORT).show()
+                        }
+                        handler.postDelayed(this, 5000)//1 sec delay
+                    }
+                }, 0)
             }
 
             override fun onDeviceDisconnected() { //연결해제
