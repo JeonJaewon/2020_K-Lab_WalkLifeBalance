@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="textsize">
-        <item>16pt</item>
-        <item>18pt</item>
-        <item>20pt</item>
-        <item>24pt</item>
-        <item>28pt</item>
-        <item>32pt</item>
-        <item>36pt</item>
-        <item>40pt</item>
+        <item>작게</item>
+        <item>크게</item>
     </string-array>
     <string-array name="statistics_data">
         <item>월간 데이터</item>
