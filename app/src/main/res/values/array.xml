@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="textsize">
-        <item>작게</item>
-        <item>크게</item>
+        <item>Smaller</item>
+        <item>Bigger</item>
     </string-array>
     <string-array name="statistics_data">
-        <item>월간 데이터</item>
-        <item>주간 데이터</item>
-        <item>일간 데이터</item>
+        <item>Monthly</item>
+        <item>Weekly</item>
+        <item>Daily</item>
     </string-array>
 </resources>

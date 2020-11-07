@@ -71,11 +71,11 @@
                     android:id="@+id/homeDescription"
                     android:layout_width="266dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="30dp"
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:padding="30px"
-                    android:text="A button to go to the Home screen. Each information can be viewed through four buttons: step width, gait, and load."
+                    android:text="A button to go to the Home screen. Each information can be viewed through four buttons: stride, gait, and load."
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -100,11 +100,11 @@
                     android:id="@+id/statisticsDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="35dp"
                     android:layout_marginRight="30dp"
                     android:layout_weight="1"
                     android:padding="20dp"
-                    android:text="일간, 주간, 월간의 구체적인      보행 정보를 확인할 수 있습니다."
+                    android:text="Specific walking information can be found daily, weekly, and monthly."
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -128,11 +128,11 @@
                     android:id="@+id/profileDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="28dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="0"
                     android:padding="20dp"
-                    android:text="정확한 측정을 위한 사용자 프로필 설정 버튼입니다. 사용자 정보 변경 및 블루투스 연결이 가능합니다."
+                    android:text="User Profile button for accurate measurements. User information can be changed and Bluetooth connection is possible."
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -156,11 +156,11 @@
                     android:id="@+id/settingDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginRight="20dp"
                     android:layout_weight="0"
                     android:padding="20dp"
-                    android:text="폰트크기, 소리, 진동, 낙상알림 기능 등을 설정할 수 있는 설정 버튼입니다. "
+                    android:text="This setting button allows you to set the font size, sound, vibration, fall accident notification, etc. "
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
