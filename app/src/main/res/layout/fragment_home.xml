@@ -14,7 +14,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:text="보폭"
+        android:text="@string/stride"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -54,30 +54,21 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/balance_btn"
+            android:id="@+id/gait_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:text="@string/balance"
+            android:text="@string/gait"
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/angle_btn"
+            android:id="@+id/load_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:text="@string/angle"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/stand_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:text="@string/stand"
+            android:text="@string/load"
             android:textSize="18sp" />
     </LinearLayout>
 

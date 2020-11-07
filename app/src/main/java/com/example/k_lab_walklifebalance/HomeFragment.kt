@@ -37,9 +37,9 @@ class HomeFragment : Fragment() {
             )
             trans.addToBackStack(null)
             trans.commit()
-            title_text.text = "보폭"
+            title_text.text = "Stride"
         }
-        balance_btn.setOnClickListener {
+        gait_btn.setOnClickListener {
             val trans = childFragmentManager.beginTransaction()
             trans.replace(
                 R.id.home_fragment_container,
@@ -47,9 +47,9 @@ class HomeFragment : Fragment() {
             )
             trans.addToBackStack(null)
             trans.commit()
-            title_text.text = "균형"
+            title_text.text = "Gait"
         }
-        angle_btn.setOnClickListener {
+        load_btn.setOnClickListener {
             val trans = childFragmentManager.beginTransaction()
             trans.replace(
                 R.id.home_fragment_container,
@@ -57,17 +57,7 @@ class HomeFragment : Fragment() {
             )
             trans.addToBackStack(null)
             trans.commit()
-            title_text.text = "각도"
-        }
-        stand_btn.setOnClickListener {
-            val trans = childFragmentManager.beginTransaction()
-            trans.replace(
-                R.id.home_fragment_container,
-                StandFragment()
-            )
-            trans.addToBackStack(null)
-            trans.commit()
-            title_text.text = "지지"
+            title_text.text = "Load"
         }
     }
 
