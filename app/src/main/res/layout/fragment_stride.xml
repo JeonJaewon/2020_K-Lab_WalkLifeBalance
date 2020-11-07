@@ -33,7 +33,7 @@
                     android:id="@+id/title_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="매우 균형"
+                    android:text="Very Balanced"
                     android:textAlignment="center"
                     android:textColor="#0378F6"
                     android:textSize="36sp" />
@@ -50,7 +50,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="1dp"
-                        android:text="왼발 보폭"
+                        android:text="left foot"
                         android:textAlignment="center"
                         app:layout_constraintEnd_toStartOf="@+id/right"
                         app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +87,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="4dp"
-                        android:text="오른발 보폭"
+                        android:text="right foot"
                         android:textAlignment="center"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/left"
@@ -99,7 +99,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/const_layout"
-                    android:text="균형/불균형에 대한 간단한 설명 텍스트가 위치하는 공간입니다."
+                    android:text="This text will show the short description for your walking pattern"
                     android:textAlignment="center" />
             </RelativeLayout>
 
