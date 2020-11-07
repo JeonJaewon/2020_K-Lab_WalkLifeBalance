@@ -44,12 +44,12 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="130dp"
+                android:layout_marginLeft="100dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginRight="130dp"
+                android:layout_marginRight="100dp"
                 android:gravity="center"
                 android:padding="20px"
-                android:text="이용 안내"
+                android:text="Guide to Use"
                 android:textSize="35sp"
                 android:textStyle="bold" />
 
@@ -75,7 +75,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_weight="1"
                     android:padding="30px"
-                    android:text="홈 화면으로 이동하는 버튼입니다. 보폭, 균형, 각도, 지지 4가지 버튼을 통해 각각의 정보를 볼 수 있습니다."
+                    android:text="A button to go to the Home screen. Each information can be viewed through four buttons: step width, gait, and load."
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
