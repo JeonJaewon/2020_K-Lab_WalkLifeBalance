@@ -100,15 +100,15 @@ class StatisticsFragment : Fragment() {
                 when(position){
                     0->{
                         setChart()
-                        statistics_data.text = "월간 운동량"
+                        statistics_data.text = "Monthly"
                     }
                     1->{
                         setChart()
-                        statistics_data.text = "주간 운동량"
+                        statistics_data.text = "Weekly"
                     }
                     2->{
                         setChart()
-                        statistics_data.text = "일간 운동량"
+                        statistics_data.text = "Daily"
                     }
                 }
             }
@@ -169,7 +169,7 @@ class StatisticsFragment : Fragment() {
     }
 
     fun createSet(): LineDataSet{
-        val set = LineDataSet(null, "운동량")
+        val set = LineDataSet(null, "workrate")
         set.apply {
             axisDependency = YAxis.AxisDependency.LEFT
             color = Color.GREEN

@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:text="프로필"
+        android:text="Profile"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -39,7 +39,7 @@
             android:layout_gravity="center"
             android:layout_marginHorizontal="20dp"
             android:gravity="center"
-            android:text="홍길동"
+            android:text="James"
             android:textSize="22sp" />
 
         <RelativeLayout
@@ -56,7 +56,7 @@
                 android:background="@drawable/border_radius_view"
                 android:backgroundTint="@color/colorLightPink"
                 android:gravity="center"
-                android:text="남성"
+                android:text="male"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
 
@@ -72,7 +72,7 @@
                 android:background="@drawable/border_radius_view"
                 android:backgroundTint="@color/colorLightPink"
                 android:gravity="center"
-                android:text="65세"
+                android:text="65"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
 
@@ -114,7 +114,7 @@
         android:layout_gravity="center"
         android:layout_marginBottom="50dp"
         android:backgroundTint="@color/colorDeepDark"
-        android:text="정보 변경"
+        android:text="Info Change"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView5"
@@ -139,7 +139,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="30dp"
             android:layout_weight="1"
-            android:text="오늘의 피드백"
+            android:text="Today's Feedback"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -167,7 +167,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/border_radius_view"
                 android:gravity="center"
-                android:text="보폭이 매우 균형적입니다"
+                android:text="The stride is very balanced."
                 android:textAlignment="center"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -195,7 +195,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/border_radius_view"
                 android:gravity="center"
-                android:text="좌우 밸런스가 나쁩니다"
+                android:text="Your gait is not good."
                 android:textAlignment="center"
                 android:textSize="18sp" />
         </LinearLayout>

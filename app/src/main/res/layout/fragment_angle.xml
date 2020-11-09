@@ -12,7 +12,7 @@
         android:layout_width="170dp"
         android:layout_height="150dp"
         android:layout_marginBottom="20dp"
-        android:src="@drawable/footprints" />
+        android:src="@drawable/out_toed_gait" />
     <androidx.cardview.widget.CardView
         android:layout_width="296dp"
         android:layout_height="wrap_content"
@@ -29,10 +29,10 @@
                 android:id="@+id/title_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="매우 균형"
+                android:text="An out-toed gait"
                 android:textAlignment="center"
                 android:textColor="#0378F6"
-                android:textSize="36sp" />
+                android:textSize="34sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/const_layout"
