@@ -10,7 +10,7 @@
     tools:context=".StrideFragment">
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/stride_image"
         android:layout_width="170dp"
         android:layout_height="150dp"
         android:layout_marginBottom="20dp"
@@ -20,7 +20,6 @@
         <androidx.cardview.widget.CardView
             android:layout_width="296dp"
             android:layout_height="wrap_content"
-
             tools:layout_editor_absoluteX="56dp"
             tools:layout_editor_absoluteY="47dp">
 
@@ -30,7 +29,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/title_text"
+                    android:id="@+id/stride_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Very Balanced"
@@ -43,7 +42,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="20dp"
-                    android:layout_below="@+id/title_text">
+                    android:layout_below="@+id/stride_text">
 
                     <TextView
                         android:id="@+id/left"
@@ -57,7 +56,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView8"
+                        android:id="@+id/left_data"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -65,12 +64,12 @@
                         android:text="000 cm"
                         android:textAlignment="center"
                         android:textSize="24sp"
-                        app:layout_constraintEnd_toStartOf="@+id/textView9"
+                        app:layout_constraintEnd_toStartOf="@+id/right_data"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/left" />
 
                     <TextView
-                        android:id="@+id/textView9"
+                        android:id="@+id/right_data"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -79,7 +78,7 @@
                         android:textAlignment="center"
                         android:textSize="24sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/textView8"
+                        app:layout_constraintStart_toEndOf="@+id/left_data"
                         app:layout_constraintTop_toBottomOf="@+id/right" />
 
                     <TextView
