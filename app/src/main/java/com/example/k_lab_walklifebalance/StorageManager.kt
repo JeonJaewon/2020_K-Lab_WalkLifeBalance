@@ -1,12 +1,12 @@
 package com.example.k_lab_walklifebalance
 
 import android.content.Context
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import java.io.BufferedReader
 import java.io.BufferedWriter
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
-import java.lang.ArithmeticException
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.round
@@ -31,6 +31,26 @@ class StorageManager(val mContext: Context) {
         bw.flush()
     }
 
+    fun readLocalStorage(): Array<Double> { // SimpleDateFormat("yyyy/MM/dd/") 으로 넘겨주면 해당 날짜의 값들을 평균내서 리턴
+        val file = mContext.getFileStreamPath("SENSOR_DATA_STORAGE")
+        var retList: Array<Double> = arrayOf(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+        if (file != null && file.exists()) {
+            val os = mContext.openFileInput("SENSOR_DATA_STORAGE")
+            val br = BufferedReader(InputStreamReader(os))
+            var line = br.readLine()
+            var lastLine: String? = ""
+            while (line != null) {
+                lastLine = line
+                line = br.readLine()
+            }
+            if (lastLine != null){
+                retList = lastLine.split("/").slice(1..7).map { it.toDouble() }
+                    .toTypedArray() // 날짜 제외한 숫자값 7개만
+                Log.e("data list", retList[0].toString())
+            }
+        }
+        return retList
+    }
     fun readLocalStorageForDay(todayDate: String): Array<Double> { // SimpleDateFormat("yyyy/MM/dd/") 으로 넘겨주면 해당 날짜의 값들을 평균내서 리턴
         val file = mContext.getFileStreamPath("SENSOR_DATA_STORAGE")
         var retList = arrayOf(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)

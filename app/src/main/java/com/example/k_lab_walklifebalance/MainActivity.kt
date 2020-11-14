@@ -81,7 +81,7 @@ class MainActivity : BaseActivity(){
                     override fun run() {
                         if(receivedData.isNotEmpty()){
                             storageManager.writeLocalStorage(receivedData)
-                            val s = storageManager.readLocalStorageForDay(todayDate)
+                            val s = storageManager.readLocalStorage()
                             if(isfirstGetData) {
                                 gaitAnalyticsManager.setStandardData(s[0])
                                 isfirstGetData = !isfirstGetData
