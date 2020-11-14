@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import app.akexorcist.bluetotohspp.library.BluetoothSPP
@@ -90,12 +91,18 @@ class MainActivity : BaseActivity(){
                                 when(shapeNumber){
                                     0 -> {
                                         Toast.makeText(applicationContext,"정상",Toast.LENGTH_SHORT).show()
+                                        var img = findViewById<ImageView>(R.id.gait_image)
+                                        img.setImageResource(R.drawable.straight_gait)
                                     }
                                     1 -> {
                                         Toast.makeText(applicationContext,"팔자",Toast.LENGTH_SHORT).show()
+                                        var img = findViewById<ImageView>(R.id.gait_image)
+                                        img.setImageResource(R.drawable.out_toed_gait)
                                     }
                                     2 -> {
                                         Toast.makeText(applicationContext,"안짱",Toast.LENGTH_SHORT).show()
+                                        var img = findViewById<ImageView>(R.id.gait_image)
+                                        img.setImageResource(R.drawable.in_toed_gait)
                                     }
                                 }
 //                                Toast.makeText(
