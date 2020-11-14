@@ -23,6 +23,7 @@ import java.util.*
 class MainActivity : BaseActivity(){
     private var isfirstGetData = true
     private var shapeNumber = -1
+    var fragment = HomeFragment()
     private lateinit var gaitAnalyticsManager:GaitAnalyticsManager
     private lateinit var bt: BluetoothSPP
     private lateinit var storageManager: StorageManager
@@ -90,28 +91,33 @@ class MainActivity : BaseActivity(){
                                 shapeNumber = gaitAnalyticsManager.checkGaitShape(s[0])
                                 when(shapeNumber){
                                     0 -> {
+                                        var bundle = Bundle()
+                                        bundle.putInt("index",shapeNumber)
+                                        Log.e("데이터넣을때 잘 들어갔나?",bundle.toString())
+                                        fragment?.arguments = bundle
+                                        supportFragmentManager.beginTransaction()
+                                            .replace(R.id.fragment_container, fragment).commit()
                                         Toast.makeText(applicationContext,"정상",Toast.LENGTH_SHORT).show()
-                                        var img = findViewById<ImageView>(R.id.gait_image)
-                                        img.setImageResource(R.drawable.straight_gait)
                                     }
                                     1 -> {
+                                        var bundle = Bundle()
+                                        bundle.putInt("index",shapeNumber)
+                                        Log.e("데이터넣을때 잘 들어갔나?",bundle.toString())
+                                        fragment?.arguments = bundle
+                                        supportFragmentManager.beginTransaction()
+                                            .replace(R.id.fragment_container, fragment).commit()
                                         Toast.makeText(applicationContext,"팔자",Toast.LENGTH_SHORT).show()
-                                        var img = findViewById<ImageView>(R.id.gait_image)
-                                        img.setImageResource(R.drawable.out_toed_gait)
                                     }
                                     2 -> {
+                                        var bundle = Bundle()
+                                        bundle.putInt("index",shapeNumber)
+                                        Log.e("데이터넣을때 잘 들어갔나?",bundle.toString())
+                                        fragment?.arguments = bundle
+                                        supportFragmentManager.beginTransaction()
+                                            .replace(R.id.fragment_container, fragment).commit()
                                         Toast.makeText(applicationContext,"안짱",Toast.LENGTH_SHORT).show()
-                                        var img = findViewById<ImageView>(R.id.gait_image)
-                                        img.setImageResource(R.drawable.in_toed_gait)
                                     }
                                 }
-//                                Toast.makeText(
-//                                    applicationContext,
-//                                    s[0].toString() + "/" + s[1].toString() + "/" + s[2].toString() + "/"
-//                                            + s[3].toString() + "/" + s[4].toString() + "/" + s[5].toString() + "/"
-//                                            + s[6].toString() + "/",
-//                                    Toast.LENGTH_SHORT
-//                                ).show()
                             }
                         }
                         handler.postDelayed(this, 100)//1 sec delay

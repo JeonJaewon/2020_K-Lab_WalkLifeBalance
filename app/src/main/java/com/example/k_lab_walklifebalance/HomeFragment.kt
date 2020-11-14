@@ -1,6 +1,7 @@
 package com.example.k_lab_walklifebalance
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +10,12 @@ import androidx.fragment.app.FragmentManager
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
+    var angleFragment = AngleFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val trans = childFragmentManager.beginTransaction()
+        trans.add(R.id.home_fragment_container, StrideFragment())
+        trans.commit()
     }
 
     override fun onCreateView(
@@ -18,17 +23,12 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        //기본 프래그먼트인 보폭으로 초기화
-        val trans = childFragmentManager.beginTransaction()
-        trans.add(R.id.home_fragment_container, StrideFragment())
-        trans.commit()
-
         stride_btn.setOnClickListener {
             val trans = childFragmentManager.beginTransaction()
             trans.replace(
@@ -40,10 +40,19 @@ class HomeFragment : Fragment() {
             title_text.text = "Stride"
         }
         gait_btn.setOnClickListener {
+            var bundle = arguments
+            Log.e("제발",arguments.toString())
+            var angleFragment = AngleFragment()
+            if(bundle != null) {
+                var shapeNumber = bundle?.getInt("index")
+                bundle.putInt("index",shapeNumber)
+            }
+            angleFragment.arguments = bundle
+
             val trans = childFragmentManager.beginTransaction()
             trans.replace(
                 R.id.home_fragment_container,
-                AngleFragment()
+                angleFragment
             )
             trans.addToBackStack(null)
             trans.commit()

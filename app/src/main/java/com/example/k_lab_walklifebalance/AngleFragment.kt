@@ -1,10 +1,13 @@
 package com.example.k_lab_walklifebalance
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import kotlinx.android.synthetic.main.fragment_angle.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +37,22 @@ class AngleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_angle, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        var bundle = arguments
+        if(bundle != null) {
+            var shapeNumber = bundle.getInt("index")
+            Log.e("잘 넘어오니?",shapeNumber.toString())
+            when(shapeNumber){
+                0 ->{ gait_image.setImageResource(R.drawable.straight_gait) }
+                1 ->{ gait_image.setImageResource(R.drawable.out_toed_gait) }
+                2 ->{ gait_image.setImageResource(R.drawable.in_toed_gait) }
+            }
+        }
     }
 
     companion object {
