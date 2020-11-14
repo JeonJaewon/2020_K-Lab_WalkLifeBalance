@@ -107,7 +107,7 @@ class MainActivity : BaseActivity(){
 //                                ).show()
                             }
                         }
-                        handler.postDelayed(this, 5000)//1 sec delay
+                        handler.postDelayed(this, 100)//1 sec delay
                     }
                 }, 3000)
             }

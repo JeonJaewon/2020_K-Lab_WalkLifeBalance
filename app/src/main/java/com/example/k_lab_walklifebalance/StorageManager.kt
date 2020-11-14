@@ -46,7 +46,6 @@ class StorageManager(val mContext: Context) {
             if (lastLine != null){
                 retList = lastLine.split("/").slice(1..7).map { it.toDouble() }
                     .toTypedArray() // 날짜 제외한 숫자값 7개만
-                Log.e("data list", retList[0].toString())
             }
         }
         return retList
