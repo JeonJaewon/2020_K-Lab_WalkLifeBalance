@@ -1,9 +1,6 @@
 package com.example.k_lab_walklifebalance
 
-import android.content.Context
 import android.content.pm.PackageManager
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.telephony.SmsManager
 import android.view.View
@@ -12,9 +9,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_help.*
 import kotlinx.android.synthetic.main.activity_settings.*
-import java.util.jar.Manifest
 
 class SettingsActivity : BaseActivity() {
     lateinit var  bottomNav : BottomNavigationView
@@ -48,8 +43,9 @@ class SettingsActivity : BaseActivity() {
     fun sendSMS(){
         val phoneNumber = telephone.text
         val smsManager = SmsManager.getDefault()
-        smsManager.sendTextMessage(phoneNumber.toString(),null,"hello",null,null)
-        Toast.makeText(this,"보내기 완료",Toast.LENGTH_SHORT)
+        val sendMessage = "I'm in a falling accident situation.\nPlease deal with the situation after checking it."
+        smsManager.sendTextMessage(phoneNumber.toString(),null, sendMessage,null,null)
+        Toast.makeText(this,"Send Complete",Toast.LENGTH_SHORT)
     }
 
     override fun onRequestPermissionsResult(
@@ -61,7 +57,7 @@ class SettingsActivity : BaseActivity() {
         when(requestCode){
             1000 ->{
                 if(grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED){
-                    Toast.makeText(this,"권한 거부됨",Toast.LENGTH_SHORT)
+                    Toast.makeText(this,"Permission denied",Toast.LENGTH_SHORT)
                 }else{
                     sendSMS()
                 }
