@@ -43,7 +43,7 @@ class HomeFragment : Fragment() {
             val trans = childFragmentManager.beginTransaction()
             trans.replace(
                 R.id.home_fragment_container,
-                BalanceFragment()
+                AngleFragment()
             )
             trans.addToBackStack(null)
             trans.commit()
@@ -53,7 +53,7 @@ class HomeFragment : Fragment() {
             val trans = childFragmentManager.beginTransaction()
             trans.replace(
                 R.id.home_fragment_container,
-                AngleFragment()
+                StandFragment()
             )
             trans.addToBackStack(null)
             trans.commit()
