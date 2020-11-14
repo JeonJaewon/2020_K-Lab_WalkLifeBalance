@@ -29,6 +29,7 @@ class MainActivity : BaseActivity(){
     private lateinit var storageManager: StorageManager
     lateinit var bottomNav : BottomNavigationView
     private var receivedData = listOf<String>()
+    private lateinit var global : Globals
     val todayDate = SimpleDateFormat("yyyy-MM-dd/", Locale.getDefault()).format(Date())
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +37,7 @@ class MainActivity : BaseActivity(){
         initBluetooth()
         initStorageManager()
         initGaitAnalyticsManager()
+        global = this.applicationContext as Globals
         var toolbar = main_toolbar as Toolbar
         toolbar.title = ""
         setSupportActionBar(toolbar)
@@ -91,30 +93,15 @@ class MainActivity : BaseActivity(){
                                 shapeNumber = gaitAnalyticsManager.checkGaitShape(s[0])
                                 when(shapeNumber){
                                     0 -> {
-                                        var bundle = Bundle()
-                                        bundle.putInt("index",shapeNumber)
-                                        Log.e("데이터넣을때 잘 들어갔나?",bundle.toString())
-                                        fragment?.arguments = bundle
-                                        supportFragmentManager.beginTransaction()
-                                            .replace(R.id.fragment_container, fragment).commit()
+                                        global.setGaitShape(0)
                                         Toast.makeText(applicationContext,"정상",Toast.LENGTH_SHORT).show()
                                     }
                                     1 -> {
-                                        var bundle = Bundle()
-                                        bundle.putInt("index",shapeNumber)
-                                        Log.e("데이터넣을때 잘 들어갔나?",bundle.toString())
-                                        fragment?.arguments = bundle
-                                        supportFragmentManager.beginTransaction()
-                                            .replace(R.id.fragment_container, fragment).commit()
+                                        global.setGaitShape(1)
                                         Toast.makeText(applicationContext,"팔자",Toast.LENGTH_SHORT).show()
                                     }
                                     2 -> {
-                                        var bundle = Bundle()
-                                        bundle.putInt("index",shapeNumber)
-                                        Log.e("데이터넣을때 잘 들어갔나?",bundle.toString())
-                                        fragment?.arguments = bundle
-                                        supportFragmentManager.beginTransaction()
-                                            .replace(R.id.fragment_container, fragment).commit()
+                                        global.setGaitShape(2)
                                         Toast.makeText(applicationContext,"안짱",Toast.LENGTH_SHORT).show()
                                     }
                                 }

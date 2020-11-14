@@ -1,5 +1,6 @@
 package com.example.k_lab_walklifebalance
 
+import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -23,9 +24,10 @@ class AngleFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
+    private lateinit var global :Globals
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        global = activity?.applicationContext as Globals
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
@@ -37,22 +39,19 @@ class AngleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
-        return inflater.inflate(R.layout.fragment_angle, container, false)
+        val v = inflater.inflate(R.layout.fragment_angle, container, false);
+        var gait = v.findViewById<ImageView>(R.id.gait_image);
+        var shapeNumber = global.getGaitShape()
+        when(shapeNumber){
+            0 ->{ gait.setImageResource(R.drawable.straight_gait) }
+            1 ->{ gait.setImageResource(R.drawable.out_toed_gait) }
+            2 ->{ gait.setImageResource(R.drawable.in_toed_gait) }
+        }
+        return v
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var bundle = arguments
-        if(bundle != null) {
-            var shapeNumber = bundle.getInt("index")
-            Log.e("잘 넘어오니?",shapeNumber.toString())
-            when(shapeNumber){
-                0 ->{ gait_image.setImageResource(R.drawable.straight_gait) }
-                1 ->{ gait_image.setImageResource(R.drawable.out_toed_gait) }
-                2 ->{ gait_image.setImageResource(R.drawable.in_toed_gait) }
-            }
-        }
     }
 
     companion object {
