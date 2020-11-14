@@ -80,7 +80,7 @@ class MainActivity : BaseActivity(){
                         }
                         handler.postDelayed(this, 5000)//1 sec delay
                     }
-                }, 0)
+                }, 3000)
             }
 
             override fun onDeviceDisconnected() { //연결해제
