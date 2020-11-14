@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".StandFragment">
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/gait_image"
         android:layout_width="170dp"
         android:layout_height="150dp"
         android:layout_marginBottom="20dp"
@@ -16,17 +16,11 @@
     <androidx.cardview.widget.CardView
         android:layout_width="296dp"
         android:layout_height="wrap_content"
-
         tools:layout_editor_absoluteX="56dp"
         tools:layout_editor_absoluteY="47dp">
 
-        <RelativeLayout
-            android:padding="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
             <TextView
-                android:id="@+id/title_text"
+                android:id="@+id/gait_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="An out-toed gait"
@@ -34,70 +28,6 @@
                 android:textColor="#0378F6"
                 android:textSize="34sp" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/const_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:layout_below="@+id/title_text">
-
-                <TextView
-                    android:id="@+id/left"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="1dp"
-                    android:text="왼발 보폭"
-                    android:textAlignment="center"
-                    app:layout_constraintEnd_toStartOf="@+id/right"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="22dp"
-                    android:text="000 cm"
-                    android:textAlignment="center"
-                    android:textSize="24sp"
-                    app:layout_constraintEnd_toStartOf="@+id/textView9"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/left" />
-
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="15dp"
-                    android:text="000 cm"
-                    android:textAlignment="center"
-                    android:textSize="24sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView8"
-                    app:layout_constraintTop_toBottomOf="@+id/right" />
-
-                <TextView
-                    android:id="@+id/right"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:text="오른발 보폭"
-                    android:textAlignment="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/left"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <TextView
-                android:id="@+id/description_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/const_layout"
-                android:text="균형/불균형에 대한 간단한 설명 텍스트가 위치하는 공간입니다."
-                android:textAlignment="center" />
-        </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 

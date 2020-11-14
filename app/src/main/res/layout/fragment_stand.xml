@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".StandFragment">
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/load_image"
         android:layout_width="170dp"
         android:layout_height="150dp"
         android:layout_marginBottom="20dp"
@@ -26,7 +26,7 @@
             android:padding="20dp">
 
             <TextView
-                android:id="@+id/title_text"
+                android:id="@+id/load_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="load"
@@ -38,65 +38,80 @@
                 android:id="@+id/const_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/title_text"
+                android:layout_below="@+id/load_text"
                 android:padding="20dp">
 
                 <TextView
-                    android:id="@+id/left"
+                    android:id="@+id/front"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="1dp"
-                    android:text="왼발 보폭"
+                    android:text="Front"
                     android:textAlignment="center"
-                    app:layout_constraintEnd_toStartOf="@+id/right"
+                    app:layout_constraintEnd_toStartOf="@+id/middle"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/front_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="22dp"
-                    android:text="000 cm"
+                    android:layout_marginStart="8dp"
+                    android:text="34%"
                     android:textAlignment="center"
                     android:textSize="24sp"
-                    app:layout_constraintEnd_toStartOf="@+id/textView9"
+                    app:layout_constraintEnd_toStartOf="@+id/middle_value"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/left" />
+                    app:layout_constraintTop_toBottomOf="@+id/front" />
+                <TextView
+                    android:id="@+id/middle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:text="Middle"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toStartOf="@+id/end"
+                    app:layout_constraintStart_toEndOf="@id/front"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/middle_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="15dp"
-                    android:text="000 cm"
+                    android:layout_marginEnd="22dp"
+                    android:text="32%"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toStartOf="@id/end_value"
+                    app:layout_constraintStart_toEndOf="@+id/front_value"
+                    app:layout_constraintTop_toBottomOf="@+id/middle" />
+
+                <TextView
+                    android:id="@+id/end_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="34%"
                     android:textAlignment="center"
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView8"
-                    app:layout_constraintTop_toBottomOf="@+id/right" />
+                    app:layout_constraintStart_toEndOf="@+id/middle_value"
+                    app:layout_constraintTop_toBottomOf="@+id/end" />
 
                 <TextView
-                    android:id="@+id/right"
+                    android:id="@+id/end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="4dp"
-                    android:text="오른발 보폭"
+                    android:text="End"
                     android:textAlignment="center"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/left"
+                    app:layout_constraintStart_toEndOf="@+id/middle"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <TextView
-                android:id="@+id/description_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/const_layout"
-                android:text="균형/불균형에 대한 간단한 설명 텍스트가 위치하는 공간입니다."
-                android:textAlignment="center" />
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
