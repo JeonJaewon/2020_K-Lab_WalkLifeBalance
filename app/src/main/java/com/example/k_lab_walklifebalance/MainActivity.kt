@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import app.akexorcist.bluetotohspp.library.BluetoothSPP
@@ -19,6 +20,9 @@ import java.util.*
 
 
 class MainActivity : BaseActivity(){
+    private var isfirstGetData = true
+    private var shapeNumber = -1
+    private lateinit var gaitAnalyticsManager:GaitAnalyticsManager
     private lateinit var bt: BluetoothSPP
     private lateinit var storageManager: StorageManager
     lateinit var bottomNav : BottomNavigationView
@@ -29,6 +33,7 @@ class MainActivity : BaseActivity(){
         setContentView(R.layout.activity_main)
         initBluetooth()
         initStorageManager()
+        initGaitAnalyticsManager()
         var toolbar = main_toolbar as Toolbar
         toolbar.title = ""
         setSupportActionBar(toolbar)
@@ -41,6 +46,10 @@ class MainActivity : BaseActivity(){
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.fragment_container, HomeFragment()).commit()
         supportFragmentManager.popBackStack()
+    }
+
+    private fun initGaitAnalyticsManager(){
+        gaitAnalyticsManager = GaitAnalyticsManager()
     }
 
     private fun initStorageManager() {
@@ -66,17 +75,37 @@ class MainActivity : BaseActivity(){
                     , "Connected to $name\n$address"
                     , Toast.LENGTH_SHORT
                 ).show()
+                Log.e("connection","Success")
                 val handler = Handler()
                 handler.postDelayed(object : Runnable {
                     override fun run() {
                         if(receivedData.isNotEmpty()){
                             storageManager.writeLocalStorage(receivedData)
                             val s = storageManager.readLocalStorageForDay(todayDate)
-                            Toast.makeText(applicationContext,
-                                s[0].toString()+"/"+s[1].toString()+"/"+s[2].toString()+"/"
-                                        +s[3].toString()+"/"+s[4].toString()+"/"+s[5].toString()+"/"
-                                        +s[6].toString()+"/",
-                                Toast.LENGTH_SHORT).show()
+                            if(isfirstGetData) {
+                                gaitAnalyticsManager.setStandardData(s[0])
+                                isfirstGetData = !isfirstGetData
+                            } else {
+                                shapeNumber = gaitAnalyticsManager.checkGaitShape(s[0])
+                                when(shapeNumber){
+                                    0 -> {
+                                        Toast.makeText(applicationContext,"정상",Toast.LENGTH_SHORT).show()
+                                    }
+                                    1 -> {
+                                        Toast.makeText(applicationContext,"팔자",Toast.LENGTH_SHORT).show()
+                                    }
+                                    2 -> {
+                                        Toast.makeText(applicationContext,"안짱",Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+//                                Toast.makeText(
+//                                    applicationContext,
+//                                    s[0].toString() + "/" + s[1].toString() + "/" + s[2].toString() + "/"
+//                                            + s[3].toString() + "/" + s[4].toString() + "/" + s[5].toString() + "/"
+//                                            + s[6].toString() + "/",
+//                                    Toast.LENGTH_SHORT
+//                                ).show()
+                            }
                         }
                         handler.postDelayed(this, 5000)//1 sec delay
                     }
@@ -88,6 +117,7 @@ class MainActivity : BaseActivity(){
                     applicationContext
                     , "Connection lost", Toast.LENGTH_SHORT
                 ).show()
+                Log.e("connection","disconnect")
             }
 
             override fun onDeviceConnectionFailed() { //연결실패
@@ -95,6 +125,7 @@ class MainActivity : BaseActivity(){
                     applicationContext
                     , "Unable to connect", Toast.LENGTH_SHORT
                 ).show()
+                Log.e("connection","fail")
             }
         })
 

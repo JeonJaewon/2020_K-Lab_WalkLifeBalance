@@ -29,6 +29,7 @@ class SettingsActivity : BaseActivity() {
 //            super.onNavigationItemSelected(it)
 //        }
         // TODO(어떤 bootom nav 아이템이 선택되어 있게 할지)
+
         sendsmsbtn.setOnClickListener {
             val permission = ContextCompat.checkSelfPermission(this,android.Manifest.permission.SEND_SMS)
             if(permission != PackageManager.PERMISSION_GRANTED){

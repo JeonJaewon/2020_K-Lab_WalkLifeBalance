@@ -18,7 +18,6 @@ class StorageManager(val mContext: Context) {
     }
 
     fun writeLocalStorage(datas: List<String>) {
-
         val os = mContext.openFileOutput("SENSOR_DATA_STORAGE", AppCompatActivity.MODE_APPEND)
         val bw = BufferedWriter(OutputStreamWriter(os))
         // 모든 구분자는 / 입니다.
