@@ -18,6 +18,7 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.fragment_statistics.*
+import java.nio.DoubleBuffer
 import kotlin.concurrent.thread
 import kotlin.random.Random
 
@@ -51,6 +52,9 @@ class StatisticsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
+        //var dataList:ArrayList<Double> =
+
         return inflater.inflate(R.layout.fragment_statistics, container, false)
     }
 

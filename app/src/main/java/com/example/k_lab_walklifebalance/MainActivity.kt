@@ -25,6 +25,8 @@ class MainActivity : BaseActivity(){
     private var shapeNumber = -1
     var fragment = HomeFragment()
     private lateinit var gaitAnalyticsManager:GaitAnalyticsManager
+    private lateinit var loadAnalyticsManager:LoadAnalyticsManager
+    private var loadPercentData = MutableList<Double>(3) {0.0}
     private lateinit var bt: BluetoothSPP
     private lateinit var storageManager: StorageManager
     lateinit var bottomNav : BottomNavigationView
@@ -35,8 +37,7 @@ class MainActivity : BaseActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initBluetooth()
-        initStorageManager()
-        initGaitAnalyticsManager()
+        initManager()
         global = this.applicationContext as Globals
         var toolbar = main_toolbar as Toolbar
         toolbar.title = ""
@@ -52,14 +53,13 @@ class MainActivity : BaseActivity(){
         supportFragmentManager.popBackStack()
     }
 
-    private fun initGaitAnalyticsManager(){
-        gaitAnalyticsManager = GaitAnalyticsManager()
-    }
-
-    private fun initStorageManager() {
+    private fun initManager(){
         storageManager = StorageManager(this)
         storageManager.initLocalStorage()
+        gaitAnalyticsManager = GaitAnalyticsManager()
+        loadAnalyticsManager = LoadAnalyticsManager()
     }
+
 
     private fun initBluetooth() {
         bt = BluetoothSPP(this) // 초기화
@@ -86,6 +86,9 @@ class MainActivity : BaseActivity(){
                         if(receivedData.isNotEmpty()){
                             storageManager.writeLocalStorage(receivedData)
                             val s = storageManager.readLocalStorage()
+                            val LoadData = storageManager.readLocalStorageForDay(todayDate)
+                            loadPercentData = loadAnalyticsManager.Calculate(LoadData[3],LoadData[4],LoadData[5],LoadData[6])
+                            global.setLoadData(loadPercentData)
                             if(isfirstGetData) {
                                 gaitAnalyticsManager.setStandardData(s[0])
                                 isfirstGetData = !isfirstGetData
