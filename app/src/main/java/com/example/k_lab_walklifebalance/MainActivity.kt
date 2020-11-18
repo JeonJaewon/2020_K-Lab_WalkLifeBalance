@@ -3,6 +3,8 @@ package com.example.k_lab_walklifebalance
 import android.app.Activity
 import android.bluetooth.BluetoothAdapter
 import android.content.Intent
+import android.media.AudioManager
+import android.media.ToneGenerator
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -23,15 +25,17 @@ import java.util.*
 class MainActivity : BaseActivity(){
     private var isfirstGetData = true
     private var shapeNumber = -1
+    private var fallIndex = -1
     var fragment = HomeFragment()
-    private lateinit var gaitAnalyticsManager:GaitAnalyticsManager
-    private lateinit var loadAnalyticsManager:LoadAnalyticsManager
+    private lateinit var gaitAnalyticsManager: GaitAnalyticsManager
+    private lateinit var loadAnalyticsManager: LoadAnalyticsManager
+    private lateinit var strideAnalyticsManager: StrideAnalyticsManager
     private var loadPercentData = MutableList<Double>(3) {0.0}
     private lateinit var bt: BluetoothSPP
     private lateinit var storageManager: StorageManager
-    lateinit var bottomNav : BottomNavigationView
+    lateinit var bottomNav: BottomNavigationView
     private var receivedData = listOf<String>()
-    private lateinit var global : Globals
+    private lateinit var global: Globals
     val todayDate = SimpleDateFormat("yyyy-MM-dd/", Locale.getDefault()).format(Date())
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +62,7 @@ class MainActivity : BaseActivity(){
         storageManager.initLocalStorage()
         gaitAnalyticsManager = GaitAnalyticsManager()
         loadAnalyticsManager = LoadAnalyticsManager()
+        strideAnalyticsManager = StrideAnalyticsManager()
     }
 
 
@@ -91,9 +96,13 @@ class MainActivity : BaseActivity(){
                             global.setLoadData(loadPercentData)
                             if(isfirstGetData) {
                                 gaitAnalyticsManager.setStandardData(s[0])
+                                strideAnalyticsManager.setStandardData(s[2])
                                 isfirstGetData = !isfirstGetData
                             } else {
                                 shapeNumber = gaitAnalyticsManager.checkGaitShape(s[0])
+                                fallIndex = strideAnalyticsManager.checkFall(s[2])
+                                Log.e("폴인", fallIndex.toString())
+
                                 when(shapeNumber){
                                     0 -> {
                                         global.setGaitShape(0)
@@ -106,6 +115,20 @@ class MainActivity : BaseActivity(){
                                     2 -> {
                                         global.setGaitShape(2)
                                         Toast.makeText(applicationContext,"안짱",Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                                when(fallIndex){
+                                    0 -> {
+                                        Toast.makeText(applicationContext,"낙상이 아닙니다",Toast.LENGTH_SHORT).show()
+                                    }
+                                    1 -> {
+                                        Toast.makeText(applicationContext,"낙상!",Toast.LENGTH_SHORT).show()
+                                        val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 1000)
+                                        toneGen1.startTone(ToneGenerator.TONE_CDMA_ABBR_ALERT, 450)
+                                        val transaction = supportFragmentManager.beginTransaction()
+                                        transaction.replace(R.id.home_fragment_container, StrideFragment())
+//                                        transaction.addToBackStack(null)
+                                        transaction.commit()
                                     }
                                 }
                             }

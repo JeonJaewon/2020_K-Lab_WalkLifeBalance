@@ -4,6 +4,7 @@ import android.app.Application
 
 class Globals : Application() {
     private var gaitShape = 0
+    private var isUserFall = false
     private val LoadPercentData = MutableList<Double>(3) { 0.0 }
 
     fun setLoadData(Data:MutableList<Double>){
@@ -21,5 +22,13 @@ class Globals : Application() {
 
     fun setGaitShape(value: Int) {
         gaitShape = value
+    }
+
+    fun getIsUserFall(): Boolean {
+        return isUserFall
+    }
+
+    fun setIsUserFall(value: Boolean) {
+        isUserFall = value
     }
 }
