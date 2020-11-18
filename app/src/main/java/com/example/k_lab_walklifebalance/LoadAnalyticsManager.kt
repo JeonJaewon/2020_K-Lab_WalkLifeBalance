@@ -18,4 +18,6 @@ class LoadAnalyticsManager(): AnalyticsManager() {
         var data = arrayListOf<Double>(front,middle,back)
         return data
     }
+
+
 }

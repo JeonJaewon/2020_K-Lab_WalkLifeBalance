@@ -91,14 +91,14 @@ class MainActivity : BaseActivity(){
                         if(receivedData.isNotEmpty()){
                             storageManager.writeLocalStorage(receivedData)
                             val s = storageManager.readLocalStorage()
-                            val LoadData = storageManager.readLocalStorageForDay(todayDate)
-                            loadPercentData = loadAnalyticsManager.Calculate(LoadData[3],LoadData[4],LoadData[5],LoadData[6])
-                            global.setLoadData(loadPercentData)
+                            val LoadData = storageManager.readLocalStorage()
                             if(isfirstGetData) {
                                 gaitAnalyticsManager.setStandardData(s[0])
                                 strideAnalyticsManager.setStandardData(s[2])
                                 isfirstGetData = !isfirstGetData
                             } else {
+                                loadPercentData = loadAnalyticsManager.Calculate(LoadData[3],LoadData[4],LoadData[5],LoadData[6])
+                                global.setLoadData(loadPercentData)
                                 shapeNumber = gaitAnalyticsManager.checkGaitShape(s[0])
                                 fallIndex = strideAnalyticsManager.checkFall(s[2])
                                 Log.e("폴인", fallIndex.toString())
@@ -126,8 +126,7 @@ class MainActivity : BaseActivity(){
                                         val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 1000)
                                         toneGen1.startTone(ToneGenerator.TONE_CDMA_ABBR_ALERT, 450)
                                         val transaction = supportFragmentManager.beginTransaction()
-                                        transaction.replace(R.id.home_fragment_container, StrideFragment())
-//                                        transaction.addToBackStack(null)
+                                        transaction.replace(R.id.fragment_container, HomeFragment())
                                         transaction.commit()
                                     }
                                 }
