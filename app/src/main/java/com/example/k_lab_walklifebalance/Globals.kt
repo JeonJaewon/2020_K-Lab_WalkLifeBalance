@@ -12,6 +12,7 @@ class Globals : Application() {
     private var notificationEnabled = true
     private var fallMessageEnabled = true
     private var biggerFontEnable = false
+    private val feedBacks = MutableList<String>(3) { "" }
 
     fun setPhoneNumber(phone:String){
         phoneNumber = phone
@@ -77,5 +78,12 @@ class Globals : Application() {
     }
     fun setBiggerFontEnable(value: Boolean){
         biggerFontEnable = value
+    }
+
+    fun getFeedBacks(): MutableList<String>{
+        return feedBacks
+    }
+    fun setFeedBacks(index: Int, value: String){
+        feedBacks[index] = value
     }
 }

@@ -46,6 +46,7 @@ class StrideFragment : Fragment() {
         when(isUserFall){
             false -> {
                 strideText.text = "Detecting Fall"
+                strideImage.setImageResource(R.drawable.detect_pic)
                 descriptionText.text = resources.getString(R.string.fallDetectingDescription)
             }
             true -> {
