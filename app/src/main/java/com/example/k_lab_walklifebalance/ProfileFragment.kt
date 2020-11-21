@@ -1,5 +1,9 @@
 package com.example.k_lab_walklifebalance
 
+import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.EditText
+import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.fragment_profile.view.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,8 +40,11 @@ class ProfileFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
     }
 
+    @Suppress("UNREACHABLE_CODE")
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,6 +66,54 @@ class ProfileFragment : Fragment() {
         else
             loadImg.setImageResource(R.drawable.ic_baseline_thumb_down_24)
         return v
+
+        // Inflate the layout for this fragment
+        //return inflater.inflate(R.layout.fragment_profile, container, false)
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        init()
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun init() {
+        button.setOnClickListener {
+            var builder = AlertDialog.Builder(context)
+            builder.setTitle("Edit Profile")
+
+            var v1 = layoutInflater.inflate(R.layout.dialog_custom,null)
+            builder.setView(v1)
+
+            var listener = DialogInterface.OnClickListener { p0, p1 ->
+                var alert = p0 as AlertDialog
+                var name: EditText? = alert.findViewById<EditText>(R.id.name_edit)
+                var male: CheckBox? = alert.findViewById<CheckBox>(R.id.male)
+                //var female: CheckBox? = alert.findViewById<CheckBox>(R.id.female)
+                var age: EditText? = alert.findViewById<EditText>(R.id.age_edit)
+                var height: EditText? = alert.findViewById<EditText>(R.id.height_edit)
+                var weight: EditText? = alert.findViewById<EditText>(R.id.weight_edit)
+                var sex=""
+
+                if (male != null) {
+                    if(male.isChecked)
+                        sex = "male"
+                    else
+                        sex="female"
+                }
+                user_name.text = "${name?.text}"
+                user_sex.text = sex
+                user_age.text = "${age?.text} years old"
+                user_height.text = "${height?.text}cm"
+                user_weight.text = "${weight?.text}kg"
+            }
+
+            builder.setPositiveButton("OK",listener)
+            builder.setNegativeButton("Cancel",null)
+
+            builder.show()
+        }
     }
 
     companion object {
