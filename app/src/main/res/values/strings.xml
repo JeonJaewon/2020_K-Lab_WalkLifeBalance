@@ -5,4 +5,10 @@
     <string name="stride">Stride</string>
     <string name="gait">Gait</string>
     <string name="load">Load</string>
+    <string name="fallDetectingDescription">
+        We are detecting the possibility that you have fallen.
+    </string>
+    <string name="fallDetectedDescription">
+        We now detected the possibility that you may have fallen.\nA text message will be sent to the phone number you have set up.
+    </string>
 </resources>

@@ -29,7 +29,7 @@ class SettingsActivity : BaseActivity() {
         class soundSwitchListener : CompoundButton.OnCheckedChangeListener {
             override fun onCheckedChanged(
                 buttonView: CompoundButton,
-                isChecrked: Boolean
+                isChecked: Boolean
             ) {
                 if (isChecked) global.setSoundEnable(true) else global.setSoundEnable(false)
             }

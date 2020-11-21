@@ -14,7 +14,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:text="@string/stride"
+        android:text="DETECTION"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:text="@string/stride"
+            android:text="detection"
             android:textSize="18sp" />
 
         <Button

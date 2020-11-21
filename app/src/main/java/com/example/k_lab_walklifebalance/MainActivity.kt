@@ -101,7 +101,7 @@ class MainActivity : BaseActivity(){
                                 global.setLoadData(loadPercentData)
                                 shapeNumber = gaitAnalyticsManager.checkGaitShape(s[0])
                                 fallIndex = strideAnalyticsManager.checkFall(s[2])
-                                Log.e("폴인", fallIndex.toString())
+                                Log.e("폴인덱스", fallIndex.toString())
 
                                 when(shapeNumber){
                                     0 -> {
@@ -119,9 +119,11 @@ class MainActivity : BaseActivity(){
                                 }
                                 when(fallIndex){
                                     0 -> {
+                                        global.setIsUserFall(false)
                                         Toast.makeText(applicationContext,"낙상이 아닙니다",Toast.LENGTH_SHORT).show()
                                     }
                                     1 -> {
+                                        global.setIsUserFall(true)
                                         Toast.makeText(applicationContext,"낙상!",Toast.LENGTH_SHORT).show()
                                         if (global.getSoundEnabled()){
                                             val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 1000)

@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
             )
             trans.addToBackStack(null)
             trans.commit()
-            title_text.text = "Stride"
+            title_text.text = "Fall detection"
         }
         gait_btn.setOnClickListener {
             var bundle = arguments

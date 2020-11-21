@@ -1,9 +1,12 @@
 package com.example.k_lab_walklifebalance
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 
 
@@ -21,9 +24,10 @@ class StrideFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
+    private lateinit var global :Globals
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        global = activity?.applicationContext as Globals
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
@@ -34,8 +38,23 @@ class StrideFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val v = inflater.inflate(R.layout.fragment_stride, container, false);
+        var strideText = v.findViewById<TextView>(R.id.stride_text)
+        var descriptionText = v.findViewById<TextView>(R.id.description_text)
+        var isUserFall = global.getIsUserFall()
+        when(isUserFall){
+            false -> {
+                strideText.text = "Detecting Fall"
+                descriptionText.text = resources.getString(R.string.fallDetectingDescription)
+            }
+            true -> {
+                strideText.text = "Fall Accident"
+                descriptionText.text = resources.getString(R.string.fallDetectedDescription)
+            }
+        }
+        return v
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_stride, container, false)
+
     }
 
     companion object {
