@@ -1,10 +1,15 @@
 package com.example.k_lab_walklifebalance
 
 import android.content.pm.PackageManager
+import android.graphics.Typeface
 import android.os.Bundle
 import android.telephony.SmsManager
+import android.util.Log
 import android.view.View
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.CompoundButton
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -13,16 +18,54 @@ import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : BaseActivity() {
     lateinit var  bottomNav : BottomNavigationView
+    private lateinit var global: Globals
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
         init()
+        global = this.applicationContext as Globals
+
+        class soundSwitchListener : CompoundButton.OnCheckedChangeListener {
+            override fun onCheckedChanged(
+                buttonView: CompoundButton,
+                isChecked: Boolean
+            ) {
+                if (isChecked) global.setSoundEnable(true) else global.setSoundEnable(false)
+            }
+        }
+        class vibrationSwitchListener : CompoundButton.OnCheckedChangeListener {
+            override fun onCheckedChanged(
+                buttonView: CompoundButton,
+                isChecked: Boolean
+            ) {
+                if (isChecked) global.setVibrationEnabled(true) else global.setVibrationEnabled(false)
+            }
+        }
+        class notificationSwitchListener : CompoundButton.OnCheckedChangeListener {
+            override fun onCheckedChanged(
+                buttonView: CompoundButton,
+                isChecked: Boolean
+            ) {
+                if (isChecked) global.setNotificationEnabled(true) else global.setNotificationEnabled(false)
+            }
+        }
+        class fallMessageSwitchListener : CompoundButton.OnCheckedChangeListener {
+            override fun onCheckedChanged(
+                buttonView: CompoundButton,
+                isChecked: Boolean
+            ) {
+                if (isChecked) global.setFallMessageEnabled(true) else global.setFallMessageEnabled(false)
+            }
+        }
+        soundset.setOnCheckedChangeListener(soundSwitchListener())
+        vibeset.setOnCheckedChangeListener(vibrationSwitchListener())
+        pushset.setOnCheckedChangeListener(notificationSwitchListener())
+        smsset.setOnCheckedChangeListener(fallMessageSwitchListener())
 
         var toolbar = settings_toolbar as Toolbar
         toolbar.title = ""
         setSupportActionBar(toolbar)
-        
         sendsmsbtn.setOnClickListener {
             val permission = ContextCompat.checkSelfPermission(this,android.Manifest.permission.SEND_SMS)
             if(permission != PackageManager.PERMISSION_GRANTED){

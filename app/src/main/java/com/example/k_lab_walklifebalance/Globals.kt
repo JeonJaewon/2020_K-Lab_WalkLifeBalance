@@ -9,6 +9,7 @@ class Globals : Application() {
     private var soundEnabled = true
     private var vibrationEnabled = true
     private var notificationEnabled = true
+    private var fallMessageEnabled = true
     private var biggerFontEnable = false
 
     fun setLoadData(Data:MutableList<Double>){
@@ -53,6 +54,13 @@ class Globals : Application() {
     }
     fun setNotificationEnabled(value: Boolean) {
         notificationEnabled = value
+    }
+
+    fun getFallMessageEnabled(): Boolean {
+        return fallMessageEnabled
+    }
+    fun setFallMessageEnabled(value: Boolean) {
+        fallMessageEnabled = value
     }
 
     fun getBiggerFontEnable(): Boolean{
