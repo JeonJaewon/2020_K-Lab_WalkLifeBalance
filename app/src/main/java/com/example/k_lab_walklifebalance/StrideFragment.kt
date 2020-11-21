@@ -41,6 +41,7 @@ class StrideFragment : Fragment() {
         val v = inflater.inflate(R.layout.fragment_stride, container, false);
         var strideText = v.findViewById<TextView>(R.id.stride_text)
         var descriptionText = v.findViewById<TextView>(R.id.description_text)
+        var strideImage = v.findViewById<ImageView>(R.id.stride_image)
         var isUserFall = global.getIsUserFall()
         when(isUserFall){
             false -> {
@@ -49,6 +50,7 @@ class StrideFragment : Fragment() {
             }
             true -> {
                 strideText.text = "Fall Accident"
+                strideImage.setImageResource(R.drawable.fall_pic)
                 descriptionText.text = resources.getString(R.string.fallDetectedDescription)
             }
         }
