@@ -3,21 +3,27 @@ package com.example.k_lab_walklifebalance
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.telephony.SmsManager
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.widget.doAfterTextChanged
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : BaseActivity() {
     lateinit var  bottomNav : BottomNavigationView
+    private var savedTelephoneNumber =""
+    private lateinit var global: Globals
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
         init()
+        global = this.applicationContext as Globals
 
         var toolbar = settings_toolbar as Toolbar
         toolbar.title = ""
@@ -30,15 +36,26 @@ class SettingsActivity : BaseActivity() {
 //        }
         // TODO(어떤 bootom nav 아이템이 선택되어 있게 할지)
 
-        sendsmsbtn.setOnClickListener {
-            val permission = ContextCompat.checkSelfPermission(this,android.Manifest.permission.SEND_SMS)
-            if(permission != PackageManager.PERMISSION_GRANTED){
-                ActivityCompat.requestPermissions(this,
-                    arrayOf(android.Manifest.permission.SEND_SMS),1000)
-            }else{
-                sendSMS()
+
+        telephone.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                savedTelephoneNumber = telephone.text.toString()
             }
-        }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (telephone.text.toString().length > 11) {
+                    telephone.setText(savedTelephoneNumber)
+                    telephone.setSelection(telephone.length())
+                }
+                else savedTelephoneNumber = telephone.text.toString()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                savedTelephoneNumber = telephone.text.toString()
+                global.setPhoneNumber(savedTelephoneNumber)
+            }
+
+        })
 
     }
     fun sendSMS(){
