@@ -49,7 +49,7 @@
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/user_sex"
                 android:layout_width="70dp"
                 android:layout_height="30dp"
                 android:layout_margin="5dp"
@@ -61,26 +61,26 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/user_age"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
-                android:layout_toRightOf="@id/textView3"
+                android:layout_toRightOf="@id/user_sex"
                 android:background="@drawable/border_radius_view"
                 android:backgroundTint="@color/colorLightPink"
                 android:gravity="center"
-                android:text="65"
+                android:text="65 years old"
                 android:textColor="#FFFFFF"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/user_height"
                 android:layout_width="70dp"
                 android:layout_height="30dp"
-                android:layout_below="@id/textView3"
+                android:layout_below="@id/user_sex"
                 android:layout_margin="5dp"
                 android:background="@drawable/border_radius_view"
                 android:backgroundTint="@color/colorLightPink"
@@ -92,12 +92,12 @@
                 tools:layout_editor_absoluteY="173dp" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/user_weight"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_below="@id/textView4"
+                android:layout_below="@id/user_age"
                 android:layout_margin="5dp"
-                android:layout_toRightOf="@id/textView3"
+                android:layout_toRightOf="@id/user_sex"
                 android:background="@drawable/border_radius_view"
                 android:backgroundTint="@color/colorLightPink"
                 android:gravity="center"
@@ -171,7 +171,7 @@
                 android:layout_marginLeft="20dp"
                 android:background="@drawable/border_radius_view"
                 android:gravity="center"
-                android:text="The stride is very balanced."
+                android:text="The load is very balanced."
                 android:textAlignment="center"
                 android:textSize="18sp" />
         </LinearLayout>
