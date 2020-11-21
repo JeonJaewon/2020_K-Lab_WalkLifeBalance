@@ -41,76 +41,78 @@
                 android:layout_below="@+id/load_text"
                 android:padding="20dp">
 
-                <TextView
-                    android:id="@+id/front"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Front"
-                    android:textAlignment="center"
-                    app:layout_constraintEnd_toStartOf="@+id/middle"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/front_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="22dp"
-                    android:layout_marginStart="8dp"
-                    android:text="34%"
-                    android:textAlignment="center"
-                    android:textSize="24sp"
-                    app:layout_constraintEnd_toStartOf="@+id/middle_value"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/front" />
-                <TextView
-                    android:id="@+id/middle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="1dp"
-                    android:text="Middle"
-                    android:textAlignment="center"
-                    app:layout_constraintEnd_toStartOf="@+id/end"
-                    app:layout_constraintStart_toEndOf="@id/front"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/middle_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="22dp"
-                    android:text="32%"
-                    android:textAlignment="center"
-                    android:textSize="24sp"
-                    app:layout_constraintEnd_toStartOf="@id/end_value"
-                    app:layout_constraintStart_toEndOf="@+id/front_value"
-                    app:layout_constraintTop_toBottomOf="@+id/middle" />
-
-                <TextView
-                    android:id="@+id/end_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="4dp"
-                    android:text="34%"
-                    android:textAlignment="center"
-                    android:textSize="24sp"
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/middle_value"
-                    app:layout_constraintTop_toBottomOf="@+id/end" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/end"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:text="End"
-                    android:textAlignment="center"
+                    <TextView
+                        android:id="@+id/front"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Front"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/middle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:text="Middle"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:id="@+id/end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="End"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="254dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/middle"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+                    <TextView
+                        android:id="@+id/front_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="34%"
+                        android:textAlignment="center"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/middle_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="25dp"
+                        android:text="32%"
+                        android:textAlignment="center"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/end_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="34%"
+                        android:textAlignment="center"
+                        android:textSize="24sp" />
+
+                </LinearLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </RelativeLayout>
 
