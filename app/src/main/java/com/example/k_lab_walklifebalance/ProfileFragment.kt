@@ -5,11 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+private lateinit var global :Globals
 
 /**
  * A simple [Fragment] subclass.
@@ -23,6 +26,7 @@ class ProfileFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        global = activity?.applicationContext as Globals
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
@@ -33,8 +37,23 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        val v = inflater.inflate(R.layout.fragment_profile, container, false);
+        var gaitImg = v.findViewById<ImageView>(R.id.thumb_gait)
+        var loadImg = v.findViewById<ImageView>(R.id.thumb_load)
+        var gaitText = v.findViewById<TextView>(R.id.feedback_text_gait)
+        var loadText = v.findViewById<TextView>(R.id.feeback_text_load)
+        val feedBacks = global.getFeedBacks()
+        gaitText.text = feedBacks[0].text
+        loadText.text = feedBacks[1].text
+        if (feedBacks[0].isGood)
+            gaitImg.setImageResource(R.drawable.ic_baseline_thumb_up_24)
+        else
+            gaitImg.setImageResource(R.drawable.ic_baseline_thumb_down_24)
+        if (feedBacks[1].isGood)
+            loadImg.setImageResource(R.drawable.ic_baseline_thumb_up_24)
+        else
+            loadImg.setImageResource(R.drawable.ic_baseline_thumb_down_24)
+        return v
     }
 
     companion object {

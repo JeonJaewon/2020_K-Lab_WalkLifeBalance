@@ -133,14 +133,17 @@ class MainActivity : BaseActivity(){
                                 when(shapeNumber){
                                     0 -> {
                                         global.setGaitShape(0)
+                                        global.setFeedBacks(0, FeedBack("Your gait is very balanced", true))
                                         Toast.makeText(applicationContext,"정상",Toast.LENGTH_SHORT).show()
                                     }
                                     1 -> {
                                         global.setGaitShape(1)
+                                        global.setFeedBacks(0, FeedBack("Your gait is out-toed", false))
                                         Toast.makeText(applicationContext,"팔자",Toast.LENGTH_SHORT).show()
                                     }
                                     2 -> {
                                         global.setGaitShape(2)
+                                        global.setFeedBacks(0, FeedBack("Your gait is in-toed", false))
                                         Toast.makeText(applicationContext,"안짱",Toast.LENGTH_SHORT).show()
                                     }
                                 }

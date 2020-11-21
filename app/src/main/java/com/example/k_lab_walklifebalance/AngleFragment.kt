@@ -40,7 +40,7 @@ class AngleFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_angle, container, false);
-        var gait = v.findViewById<ImageView>(R.id.gait_image);
+        var gait = v.findViewById<ImageView>(R.id.gait_image)
         var shapeNumber = global.getGaitShape()
         when(shapeNumber){
             0 ->{ gait.setImageResource(R.drawable.straight_gait) }
