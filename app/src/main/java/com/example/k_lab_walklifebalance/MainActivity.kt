@@ -10,8 +10,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.telephony.SmsManager
 import android.util.Log
-import android.widget.Button
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
@@ -23,6 +21,10 @@ import app.akexorcist.bluetotohspp.library.DeviceList
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_settings.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -106,6 +108,7 @@ class MainActivity : BaseActivity(){
                     , "Connected to $name\n$address"
                     , Toast.LENGTH_SHORT
                 ).show()
+                showLoadingDialog()
                 Log.e("connection","Success")
                 val handler = Handler()
                 handler.postDelayed(object : Runnable {
@@ -191,6 +194,15 @@ class MainActivity : BaseActivity(){
                 val intent = Intent(applicationContext, DeviceList::class.java)
                 startActivityForResult(intent, BluetoothState.REQUEST_CONNECT_DEVICE)
             }
+        }
+    }
+
+    private fun showLoadingDialog() {
+        val dialog = LoadingDialog(this@MainActivity)
+        CoroutineScope(Main).launch {
+            dialog.show()
+            delay(5000)
+            dialog.dismiss()
         }
     }
 
