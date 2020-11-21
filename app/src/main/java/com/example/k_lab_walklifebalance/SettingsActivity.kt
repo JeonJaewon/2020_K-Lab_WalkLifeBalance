@@ -27,7 +27,6 @@ class SettingsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-        init()
         global = this.applicationContext as Globals
 
         class soundSwitchListener : CompoundButton.OnCheckedChangeListener {
@@ -118,28 +117,4 @@ class SettingsActivity : BaseActivity() {
         }
     }
 
-    fun init(){
-        var items = resources.getStringArray(R.array.textsize)
-        var myAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, items)
-        spinner_textsize.adapter = myAdapter
-
-        spinner_textsize.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                //TODO("Not yet implemented")
-            }
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                when(position){
-                    0->{}
-                    1->{}
-                }
-            }
-
-        }
-    }
 }
