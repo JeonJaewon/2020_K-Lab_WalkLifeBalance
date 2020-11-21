@@ -151,12 +151,6 @@
                 android:textSize="18dp" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/sendsmsbtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="SMS Tester" />
-
     </LinearLayout>
 
 

@@ -3,21 +3,26 @@ package com.example.k_lab_walklifebalance
 import android.app.Activity
 import android.bluetooth.BluetoothAdapter
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.media.AudioManager
 import android.media.ToneGenerator
 import android.os.Bundle
 import android.os.Handler
+import android.telephony.SmsManager
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import app.akexorcist.bluetotohspp.library.BluetoothSPP
 import app.akexorcist.bluetotohspp.library.BluetoothSPP.BluetoothConnectionListener
 import app.akexorcist.bluetotohspp.library.BluetoothState
 import app.akexorcist.bluetotohspp.library.DeviceList
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_settings.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -47,6 +52,8 @@ class MainActivity : BaseActivity(){
         toolbar.title = ""
         setSupportActionBar(toolbar)
 
+        checkPermission()
+
         bottomNav = main_bottom_nav as BottomNavigationView
         bottomNav.setOnNavigationItemSelectedListener {
             super.onNavigationItemSelected(it)
@@ -65,6 +72,21 @@ class MainActivity : BaseActivity(){
         strideAnalyticsManager = StrideAnalyticsManager()
     }
 
+    private fun checkPermission(){
+        val permission = ContextCompat.checkSelfPermission(this,android.Manifest.permission.SEND_SMS)
+        if(permission != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,
+                arrayOf(android.Manifest.permission.SEND_SMS),1000)
+        }
+    }
+
+    private fun sendSMS(){
+        val phoneNumber = global.getPhoneNumber()
+        val smsManager = SmsManager.getDefault()
+        val sendMessage = "I'm in a falling accident situation.\nPlease deal with the situation after checking it."
+        smsManager.sendTextMessage(phoneNumber.toString(),null, sendMessage,null,null)
+        Toast.makeText(this,"Send Complete",Toast.LENGTH_SHORT)
+    }
 
     private fun initBluetooth() {
         bt = BluetoothSPP(this) // 초기화
@@ -125,6 +147,9 @@ class MainActivity : BaseActivity(){
                                     1 -> {
                                         global.setIsUserFall(true)
                                         Toast.makeText(applicationContext,"낙상!",Toast.LENGTH_SHORT).show()
+                                        if (global.getFallMessageEnabled()) {
+                                            sendSMS()
+                                        }
                                         if (global.getSoundEnabled()){
                                             val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 1000)
                                             toneGen1.startTone(ToneGenerator.TONE_CDMA_ABBR_ALERT, 450)

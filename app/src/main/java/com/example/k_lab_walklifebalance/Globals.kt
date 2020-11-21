@@ -5,12 +5,21 @@ import android.app.Application
 class Globals : Application() {
     private var gaitShape = 0
     private var isUserFall = false
+    private var phoneNumber = ""
     private val LoadPercentData = MutableList<Double>(3) { 0.0 }
     private var soundEnabled = true
     private var vibrationEnabled = true
     private var notificationEnabled = true
     private var fallMessageEnabled = true
     private var biggerFontEnable = false
+
+    fun setPhoneNumber(phone:String){
+        phoneNumber = phone
+    }
+
+    fun getPhoneNumber():String{
+        return phoneNumber
+    }
 
     fun setLoadData(Data:MutableList<Double>){
         for(i in 0..Data.size - 1){
