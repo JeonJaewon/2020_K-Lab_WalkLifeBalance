@@ -22,14 +22,7 @@ class SettingsActivity : BaseActivity() {
         var toolbar = settings_toolbar as Toolbar
         toolbar.title = ""
         setSupportActionBar(toolbar)
-
-        // TODO: 하단바 삭제. 문제 없을시 지워버리셈
-//        bottomNav = settings_bottom_nav as BottomNavigationView
-//        bottomNav.setOnNavigationItemSelectedListener {
-//            super.onNavigationItemSelected(it)
-//        }
-        // TODO(어떤 bootom nav 아이템이 선택되어 있게 할지)
-
+        
         sendsmsbtn.setOnClickListener {
             val permission = ContextCompat.checkSelfPermission(this,android.Manifest.permission.SEND_SMS)
             if(permission != PackageManager.PERMISSION_GRANTED){
