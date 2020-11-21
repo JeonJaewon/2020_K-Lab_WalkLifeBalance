@@ -5,6 +5,10 @@ import android.bluetooth.BluetoothAdapter
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.media.AudioManager
 import android.media.ToneGenerator
 import android.os.Bundle
@@ -31,7 +35,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class MainActivity : BaseActivity(){
+class MainActivity : BaseActivity(), SensorEventListener{
     private var isfirstGetData = true
     private var shapeNumber = -1
     private var fallIndex = -1
@@ -45,12 +49,17 @@ class MainActivity : BaseActivity(){
     lateinit var bottomNav: BottomNavigationView
     private var receivedData = listOf<String>()
     private lateinit var global: Globals
+    private lateinit var sensorManager:SensorManager
+    private lateinit var stepDetectorSensor:Sensor
+    private lateinit var stepCountSensor:Sensor
+    private var mStepDetector:Float = 0f
     val todayDate = SimpleDateFormat("yyyy-MM-dd/", Locale.getDefault()).format(Date())
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initBluetooth()
         initManager()
+        initStepCounter()
         global = this.applicationContext as Globals
         var toolbar = main_toolbar as Toolbar
         toolbar.title = ""
@@ -68,9 +77,44 @@ class MainActivity : BaseActivity(){
         supportFragmentManager.popBackStack()
     }
 
+    private fun initStepCounter(){
+        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+
+        // Detector
+        stepDetectorSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR)
+        if(stepDetectorSensor == null)
+            Toast.makeText(this,"No Step Detect Sensor",Toast.LENGTH_SHORT).show()
+
+        // Counter
+        stepCountSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
+        if(stepCountSensor == null)
+            Toast.makeText(this,"No Step Count Sensor",Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+
+    }
+
+    override fun onSensorChanged(event: SensorEvent?) {
+        if(event?.sensor?.type == Sensor.TYPE_STEP_DETECTOR){
+            if(event.values[0] == 1.0f){
+                storageManager.writeStepToLocalStorage(event.values[0].toInt())
+            }
+        } else if(event?.sensor?.type == Sensor.TYPE_STEP_COUNTER){
+            Toast.makeText(this, mStepDetector.toInt().toString(), Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        sensorManager.registerListener(this, stepDetectorSensor,SensorManager.SENSOR_DELAY_NORMAL)
+        sensorManager.registerListener(this, stepCountSensor,SensorManager.SENSOR_DELAY_NORMAL)
+    }
+
     private fun initManager(){
         storageManager = StorageManager(this)
         storageManager.initLocalStorage()
+        storageManager.initLocalStorage("STEP_DATA_STORAGE")
         gaitAnalyticsManager = GaitAnalyticsManager()
         loadAnalyticsManager = LoadAnalyticsManager()
         strideAnalyticsManager = StrideAnalyticsManager()
@@ -264,5 +308,11 @@ class MainActivity : BaseActivity(){
             }
         }
     }
+
+    override fun onPause() {
+        super.onPause()
+        sensorManager.unregisterListener(this)
+    }
+
 }
 

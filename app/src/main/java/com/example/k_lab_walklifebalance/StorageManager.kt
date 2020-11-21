@@ -12,9 +12,41 @@ import java.util.*
 import kotlin.math.round
 
 class StorageManager(val mContext: Context) {
+    lateinit var storageName:String
     fun initLocalStorage() {
         // 내부 저장소에 기본 위치 저장
         val os = mContext.openFileOutput("SENSOR_DATA_STORAGE", AppCompatActivity.MODE_APPEND)
+    }
+
+    fun initLocalStorage(name:String) {
+        // 내부 저장소에 기본 위치 저장
+        storageName = name
+        val os = mContext.openFileOutput(name, AppCompatActivity.MODE_APPEND)
+        val bw = BufferedWriter(OutputStreamWriter(os))
+        bw.write(0)
+        bw.flush()
+    }
+
+    fun writeStepToLocalStorage(data: Int){
+        val os2 = mContext.openFileInput(storageName)
+        val br = BufferedReader(InputStreamReader(os2))
+
+        var line = br.read()
+
+        val os = mContext.openFileOutput(storageName, AppCompatActivity.MODE_PRIVATE) // private으로 열 때 기존 파일이 날라갑니다. . .
+        val bw = BufferedWriter(OutputStreamWriter(os))
+
+        Log.e("데이터",line.toString())
+        var stepNum = line.toInt() + data
+
+        bw.write(stepNum)
+        bw.flush()
+    }
+    fun readStep():Int{
+        val os = mContext.openFileInput(storageName)
+        val br = BufferedReader(InputStreamReader(os))
+        var line = br.read()
+        return line.toInt()
     }
 
     fun writeLocalStorage(datas: List<String>) {

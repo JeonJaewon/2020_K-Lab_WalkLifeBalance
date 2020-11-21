@@ -22,7 +22,7 @@
                 android:layout_width="197dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:text="Monthly"
+                android:text="Daily"
                 android:textColor="#000000"
                 android:textSize="36sp"
                 android:textStyle="bold" />

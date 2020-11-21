@@ -1,5 +1,6 @@
 package com.example.k_lab_walklifebalance
 
+import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -19,6 +20,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.android.synthetic.main.fragment_statistics.*
 import java.nio.DoubleBuffer
+import java.util.*
 import kotlin.concurrent.thread
 import kotlin.random.Random
 
@@ -37,6 +39,7 @@ class StatisticsFragment : Fragment() {
     var floatdata = 35.4f
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var storageManager: StorageManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +47,8 @@ class StatisticsFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        storageManager = StorageManager(activity?.applicationContext!!)
+        storageManager.initLocalStorage("STEP_DATA_STORAGE")
     }
 
 
@@ -104,7 +109,7 @@ class StatisticsFragment : Fragment() {
                 when(position){
                     0->{
                         setChart()
-                        statistics_data.text = "Monthly"
+                        statistics_data.text = "Daily"
                     }
                     1->{
                         setChart()
@@ -112,7 +117,7 @@ class StatisticsFragment : Fragment() {
                     }
                     2->{
                         setChart()
-                        statistics_data.text = "Daily"
+                        statistics_data.text = "Monthly"
                     }
                 }
             }
@@ -121,17 +126,20 @@ class StatisticsFragment : Fragment() {
 
     fun setChart(){
         val xAxis = chart.xAxis
+//        xAxis.valueFormatter = DateValueFormatter()
         xAxis.apply {
             position = XAxis.XAxisPosition.BOTTOM       //x축 데이터의 위치를 아래로
             textSize = 10f                              //텍스트 크기지정
             setDrawGridLines(false)                     //배경 그리드 라인 세팅
             granularity = 1f                            //x축 데이터 표시 간격
-            axisMinimum = 3f                            //x축 데이터의 최소 표시값
+            axisMinimum = 1f                            //x축 데이터의 최소 표시값
+            axisMaximum = 31f
             isGranularityEnabled = true                 //x축 간격을 제한하는 세분화 기능
         }
         chart.apply {
             axisRight.isEnabled = false                 //y축의 오른쪽 데이터 비활성화
-            axisLeft.axisMaximum = 50f                  //y축의 왼쪽 데이터 최대값은 50
+            axisLeft.axisMaximum = 10000f                  //y축의 왼쪽 데이터 최대값은 50
+            axisLeft.axisMinimum = 0f
             legend.apply {                              //범례 세팅
                 textSize = 15f
                 verticalAlignment = Legend.LegendVerticalAlignment.TOP
@@ -154,14 +162,33 @@ class StatisticsFragment : Fragment() {
                 set = createSet()
                 data.addDataSet(set)
             }
-            data.addEntry(Entry(3f,36.8f), 0)
-            data.addEntry(Entry(4f,46.9f), 0)
-            data.addEntry(Entry(5f,30f), 0)
+            val step = storageManager.readStep()
+            data.addEntry(Entry(1f,3123f), 0)
+            data.addEntry(Entry(2f,7123f), 0)
+            data.addEntry(Entry(3f,4823f), 0)
+            data.addEntry(Entry(4f,8582f), 0)
+            data.addEntry(Entry(5f,6492f), 0)
+            data.addEntry(Entry(6f,9715f), 0)
+            data.addEntry(Entry(7f,4823f), 0)
+            data.addEntry(Entry(8f,8582f), 0)
+            data.addEntry(Entry(9f,6492f), 0)
+            data.addEntry(Entry(10f,5715f), 0)
+            data.addEntry(Entry(11f,4823f), 0)
+            data.addEntry(Entry(12f,8582f), 0)
+            data.addEntry(Entry(13f,130f), 0)
+            data.addEntry(Entry(14f,5000f), 0)
+            data.addEntry(Entry(15f,8582f), 0)
+            data.addEntry(Entry(16f,6492f), 0)
+            data.addEntry(Entry(17f,2715f), 0)
+            data.addEntry(Entry(18f,4823f), 0)
+            data.addEntry(Entry(19f,3582f), 0)
+            data.addEntry(Entry(20f,130f), 0)
+            data.addEntry(Entry(21f,2500f), 0)
             //데이터 엔트리 추가 Entry(x값,y값)
             data.notifyDataChanged()
             chart.apply {
                 notifyDataSetChanged()
-                setVisibleXRangeMaximum(5f)
+                setVisibleXRangeMaximum(7f)
                 setPinchZoom(false)
                 isDoubleTapToZoomEnabled = false
                 description.text = ""
