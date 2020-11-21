@@ -15,8 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name" />
+            android:hint="Name"
+            android:inputType="textPersonName" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -51,23 +51,25 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Age" />
+            android:hint="Age"
+            android:inputType="textPersonName" />
+
         <EditText
             android:id="@+id/height_edit"
-            android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Height" />
+            android:hint="Height"
+            android:inputType="textPersonName" />
+
         <EditText
             android:id="@+id/weight_edit"
-            android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Weight" />
+            android:hint="Weight"
+            android:inputType="textPersonName" />
     </LinearLayout>
 </LinearLayout>
