@@ -41,7 +41,6 @@ class HomeFragment : Fragment() {
         }
         gait_btn.setOnClickListener {
             var bundle = arguments
-            Log.e("제발",arguments.toString())
             var angleFragment = AngleFragment()
             if(bundle != null) {
                 var shapeNumber = bundle?.getInt("index")

@@ -97,7 +97,7 @@ class SettingsActivity : BaseActivity() {
         val smsManager = SmsManager.getDefault()
         val sendMessage = "I'm in a falling accident situation.\nPlease deal with the situation after checking it."
         smsManager.sendTextMessage(phoneNumber.toString(),null, sendMessage,null,null)
-        Toast.makeText(this,"Send Complete",Toast.LENGTH_SHORT)
+        //Toast.makeText(this,"Send Complete",Toast.LENGTH_SHORT)
     }
 
     override fun onRequestPermissionsResult(
@@ -109,7 +109,7 @@ class SettingsActivity : BaseActivity() {
         when(requestCode){
             1000 ->{
                 if(grantResults.isEmpty() || grantResults[0] != PackageManager.PERMISSION_GRANTED){
-                    Toast.makeText(this,"Permission denied",Toast.LENGTH_SHORT)
+                    //Toast.makeText(this,"Permission denied",Toast.LENGTH_SHORT)
                 }else{
                     sendSMS()
                 }

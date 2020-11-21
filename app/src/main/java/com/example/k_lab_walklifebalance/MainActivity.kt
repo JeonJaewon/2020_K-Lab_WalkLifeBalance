@@ -82,13 +82,13 @@ class MainActivity : BaseActivity(), SensorEventListener{
 
         // Detector
         stepDetectorSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR)
-        if(stepDetectorSensor == null)
-            Toast.makeText(this,"No Step Detect Sensor",Toast.LENGTH_SHORT).show()
+        //if(stepDetectorSensor == null)
+//            Toast.makeText(this,"No Step Detect Sensor",Toast.LENGTH_SHORT).show()
 
         // Counter
         stepCountSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
-        if(stepCountSensor == null)
-            Toast.makeText(this,"No Step Count Sensor",Toast.LENGTH_SHORT).show()
+        //if(stepCountSensor == null)
+            //Toast.makeText(this,"No Step Count Sensor",Toast.LENGTH_SHORT).show()
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
@@ -101,7 +101,7 @@ class MainActivity : BaseActivity(), SensorEventListener{
                 storageManager.writeStepToLocalStorage(event.values[0].toInt())
             }
         } else if(event?.sensor?.type == Sensor.TYPE_STEP_COUNTER){
-            Toast.makeText(this, mStepDetector.toInt().toString(), Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this, mStepDetector.toInt().toString(), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -133,7 +133,7 @@ class MainActivity : BaseActivity(), SensorEventListener{
         val smsManager = SmsManager.getDefault()
         val sendMessage = "I'm in a falling accident situation.\nPlease deal with the situation after checking it."
         smsManager.sendTextMessage(phoneNumber.toString(),null, sendMessage,null,null)
-        Toast.makeText(this,"Send Complete",Toast.LENGTH_SHORT)
+        //Toast.makeText(this,"Send Complete",Toast.LENGTH_SHORT)
     }
 
     private fun initBluetooth() {
@@ -172,33 +172,32 @@ class MainActivity : BaseActivity(), SensorEventListener{
                                 global.setLoadData(loadPercentData)
                                 shapeNumber = gaitAnalyticsManager.checkGaitShape(s[0])
                                 fallIndex = strideAnalyticsManager.checkFall(s[2])
-                                Log.e("폴인덱스", fallIndex.toString())
 
                                 when(shapeNumber){
                                     0 -> {
                                         global.setGaitShape(0)
                                         global.setFeedBacks(0, FeedBack("Your gait is very balanced", true))
-                                        Toast.makeText(applicationContext,"정상",Toast.LENGTH_SHORT).show()
+                                        //Toast.makeText(applicationContext,"정상",Toast.LENGTH_SHORT).show()
                                     }
                                     1 -> {
                                         global.setGaitShape(1)
                                         global.setFeedBacks(0, FeedBack("Your gait is out-toed", false))
-                                        Toast.makeText(applicationContext,"팔자",Toast.LENGTH_SHORT).show()
+                                        //Toast.makeText(applicationContext,"팔자",Toast.LENGTH_SHORT).show()
                                     }
                                     2 -> {
                                         global.setGaitShape(2)
                                         global.setFeedBacks(0, FeedBack("Your gait is in-toed", false))
-                                        Toast.makeText(applicationContext,"안짱",Toast.LENGTH_SHORT).show()
+                                        //Toast.makeText(applicationContext,"안짱",Toast.LENGTH_SHORT).show()
                                     }
                                 }
                                 when(fallIndex){
                                     0 -> {
                                         global.setIsUserFall(false)
-                                        Toast.makeText(applicationContext,"낙상이 아닙니다",Toast.LENGTH_SHORT).show()
+                                        //Toast.makeText(applicationContext,"낙상이 아닙니다",Toast.LENGTH_SHORT).show()
                                     }
                                     1 -> {
                                         global.setIsUserFall(true)
-                                        Toast.makeText(applicationContext,"낙상!",Toast.LENGTH_SHORT).show()
+                                        //Toast.makeText(applicationContext,"낙상!",Toast.LENGTH_SHORT).show()
                                         if (global.getFallMessageEnabled()) {
                                             sendSMS()
                                         }

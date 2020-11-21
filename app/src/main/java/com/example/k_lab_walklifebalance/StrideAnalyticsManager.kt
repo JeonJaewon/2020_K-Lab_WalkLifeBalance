@@ -17,7 +17,6 @@ class StrideAnalyticsManager: AnalyticsManager(){
     }
     fun checkFall(liveData: Double): Int{
         var ret = -1
-        Log.e("폴파서빌", fallPossibilityCnt.toString())
         if(abs(standardData - liveData) > FALL_WEIGHT_STANDARD)
             fallPossibilityCnt++
         if (nList == FALL_TIME_STANDARD){

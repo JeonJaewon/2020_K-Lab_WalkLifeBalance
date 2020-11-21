@@ -30,11 +30,11 @@ class GaitAnalyticsManager(): AnalyticsManager(){
             Log.e("2초간 데이터 수집 리스트", dataStr)
             Log.e("기준 데이터", standardData.toString())
             Log.e("평균", absGap.toString())
-            if(absGap >= - 8.0 && absGap <= 8.0)
+            if(absGap >= - 6.0 && absGap <= 6.0)
                 shapeNumbering = 0
-            else if(absGap > 8.0)
+            else if(absGap > 6.0)
                 shapeNumbering = 1
-            else if(absGap < - 8.0)
+            else if(absGap < - 6.0)
                 shapeNumbering = 2
 
             nList = 0
