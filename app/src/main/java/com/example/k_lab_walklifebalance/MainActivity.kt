@@ -146,8 +146,10 @@ class MainActivity : BaseActivity(){
                                     1 -> {
                                         sendSMS()
                                         Toast.makeText(applicationContext,"낙상!",Toast.LENGTH_SHORT).show()
-                                        val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 1000)
-                                        toneGen1.startTone(ToneGenerator.TONE_CDMA_ABBR_ALERT, 450)
+                                        if (global.getSoundEnabled()){
+                                            val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 1000)
+                                            toneGen1.startTone(ToneGenerator.TONE_CDMA_ABBR_ALERT, 450)
+                                        }
                                         val transaction = supportFragmentManager.beginTransaction()
                                         transaction.replace(R.id.fragment_container, HomeFragment())
                                         transaction.commit()

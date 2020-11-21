@@ -1,12 +1,17 @@
 package com.example.k_lab_walklifebalance
 
 import android.content.pm.PackageManager
+import android.graphics.Typeface
 import android.os.Bundle
 import android.telephony.SmsManager
+import android.util.Log
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.CompoundButton
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -15,7 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : BaseActivity() {
-    lateinit var  bottomNav : BottomNavigationView
+    lateinit var bottomNav : BottomNavigationView
     private var savedTelephoneNumber =""
     private lateinit var global: Globals
 
@@ -25,16 +30,46 @@ class SettingsActivity : BaseActivity() {
         init()
         global = this.applicationContext as Globals
 
+        class soundSwitchListener : CompoundButton.OnCheckedChangeListener {
+            override fun onCheckedChanged(
+                buttonView: CompoundButton,
+                isChecked: Boolean
+            ) {
+                if (isChecked) global.setSoundEnable(true) else global.setSoundEnable(false)
+            }
+        }
+        class vibrationSwitchListener : CompoundButton.OnCheckedChangeListener {
+            override fun onCheckedChanged(
+                buttonView: CompoundButton,
+                isChecked: Boolean
+            ) {
+                if (isChecked) global.setVibrationEnabled(true) else global.setVibrationEnabled(false)
+            }
+        }
+        class notificationSwitchListener : CompoundButton.OnCheckedChangeListener {
+            override fun onCheckedChanged(
+                buttonView: CompoundButton,
+                isChecked: Boolean
+            ) {
+                if (isChecked) global.setNotificationEnabled(true) else global.setNotificationEnabled(false)
+            }
+        }
+        class fallMessageSwitchListener : CompoundButton.OnCheckedChangeListener {
+            override fun onCheckedChanged(
+                buttonView: CompoundButton,
+                isChecked: Boolean
+            ) {
+                if (isChecked) global.setFallMessageEnabled(true) else global.setFallMessageEnabled(false)
+            }
+        }
+        soundset.setOnCheckedChangeListener(soundSwitchListener())
+        vibeset.setOnCheckedChangeListener(vibrationSwitchListener())
+        pushset.setOnCheckedChangeListener(notificationSwitchListener())
+        smsset.setOnCheckedChangeListener(fallMessageSwitchListener())
+
         var toolbar = settings_toolbar as Toolbar
         toolbar.title = ""
         setSupportActionBar(toolbar)
-
-        // TODO: 하단바 삭제. 문제 없을시 지워버리셈
-//        bottomNav = settings_bottom_nav as BottomNavigationView
-//        bottomNav.setOnNavigationItemSelectedListener {
-//            super.onNavigationItemSelected(it)
-//        }
-        // TODO(어떤 bootom nav 아이템이 선택되어 있게 할지)
 
 
         telephone.addTextChangedListener(object : TextWatcher {
