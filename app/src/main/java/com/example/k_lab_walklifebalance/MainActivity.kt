@@ -2,12 +2,14 @@ package com.example.k_lab_walklifebalance
 
 import android.app.Activity
 import android.bluetooth.BluetoothAdapter
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.AudioManager
 import android.media.ToneGenerator
 import android.os.Bundle
 import android.os.Handler
+import android.os.Vibrator
 import android.telephony.SmsManager
 import android.util.Log
 import android.widget.Toast
@@ -153,6 +155,11 @@ class MainActivity : BaseActivity(){
                                         if (global.getFallMessageEnabled()) {
                                             sendSMS()
                                         }
+                                        if (global.getVibrationEnabled()){
+                                            val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+                                            vibrator.vibrate(1000)
+                                        }
+
                                         if (global.getSoundEnabled()){
                                             val toneGen1 = ToneGenerator(AudioManager.STREAM_MUSIC, 1000)
                                             toneGen1.startTone(ToneGenerator.TONE_CDMA_ABBR_ALERT, 450)
