@@ -51,10 +51,18 @@ class StandFragment : Fragment() {
         var dataList = global.getLoadData()
         Log.e("main activity 값 : ", dataList[0].toString() +" / "+ dataList[1].toString() +" / "+
                 dataList[2].toString())
-        frontValue.text = (Math.round(dataList[0]*10)/10f).toString()+"%"
-        middleValue.text = (Math.round(dataList[1]*10)/10f).toString()+"%"
-        endValue.text = (Math.round(dataList[2]*10)/10f).toString()+"%"
+        val frontTmp = Math.round(dataList[0]*10)/10f
+        val midTmp = Math.round(dataList[1]*10)/10f
+        val endTmp = Math.round(dataList[2]*10)/10f
+        if (frontTmp > 60.0 || midTmp > 60.0 || endTmp > 60.0){
+            global.setFeedBacks(1, FeedBack("Your load balance is unbalanced", false))
+        } else {
+            global.setFeedBacks(1, FeedBack("Your load balance is balanced", true))
+        }
 
+        frontValue.text = (frontTmp).toString()+"%"
+        middleValue.text = (midTmp).toString()+"%"
+        endValue.text = (endTmp).toString()+"%"
         return v
     }
 

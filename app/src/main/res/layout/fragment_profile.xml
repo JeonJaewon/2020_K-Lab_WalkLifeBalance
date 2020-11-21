@@ -164,7 +164,9 @@
             <TextView
                 android:id="@+id/feedback_text_gait"
                 android:layout_width="200dp"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:layout_marginLeft="20dp"
                 android:background="@drawable/border_radius_view"
@@ -192,9 +194,11 @@
                 android:src="@drawable/ic_baseline_thumb_down_24" />
 
             <TextView
-                android:id="@+id/feeback_text_load"
+                android:id="@+id/feedback_text_load"
                 android:layout_width="200dp"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="5dp"
                 android:layout_weight="1"
                 android:layout_marginLeft="20dp"
                 android:background="@drawable/border_radius_view"

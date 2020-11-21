@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import kotlinx.android.synthetic.main.fragment_angle.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -41,11 +42,12 @@ class AngleFragment : Fragment() {
         // Inflate the layout for this fragment
         val v = inflater.inflate(R.layout.fragment_angle, container, false);
         var gait = v.findViewById<ImageView>(R.id.gait_image)
+        var gaitText = v.findViewById<TextView>(R.id.gait_text)
         var shapeNumber = global.getGaitShape()
         when(shapeNumber){
-            0 ->{ gait.setImageResource(R.drawable.straight_gait) }
-            1 ->{ gait.setImageResource(R.drawable.out_toed_gait) }
-            2 ->{ gait.setImageResource(R.drawable.in_toed_gait) }
+            0 ->{ gait.setImageResource(R.drawable.straight_gait); gaitText.text = "A Straight-toed gait"}
+            1 ->{ gait.setImageResource(R.drawable.out_toed_gait); gaitText.text = "A Out-toed gait" }
+            2 ->{ gait.setImageResource(R.drawable.in_toed_gait); gaitText.text = "A In-toed gait" }
         }
         return v
     }

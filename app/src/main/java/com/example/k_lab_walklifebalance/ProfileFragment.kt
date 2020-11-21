@@ -41,7 +41,7 @@ class ProfileFragment : Fragment() {
         var gaitImg = v.findViewById<ImageView>(R.id.thumb_gait)
         var loadImg = v.findViewById<ImageView>(R.id.thumb_load)
         var gaitText = v.findViewById<TextView>(R.id.feedback_text_gait)
-        var loadText = v.findViewById<TextView>(R.id.feeback_text_load)
+        var loadText = v.findViewById<TextView>(R.id.feedback_text_load)
         val feedBacks = global.getFeedBacks()
         gaitText.text = feedBacks[0].text
         loadText.text = feedBacks[1].text
